@@ -11,9 +11,14 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === 'POST') {
+    const { prompt } = req.body;
+
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages: [{"role": "system", "content": "You are a comic book expert."}, {"role": "user", "content": "Who would win in a match between batman and superman?"}],
+      messages: [
+        { "role": "system", "content": "You are a comic book expert." },
+        { "role": "user", "content": prompt },
+      ],
       temperature: 0.9,
       max_tokens: 150,
       top_p: 1,

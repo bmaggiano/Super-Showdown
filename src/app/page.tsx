@@ -26,7 +26,6 @@ const handleFirstHero = async (e: any) => {
   } else {
     console.log("Error occurred:", response.status);
   }
-  console.log(firstHero)
 };
 
 const handleSecondHero = async (e: any) => {
@@ -52,6 +51,9 @@ const handleSecondHero = async (e: any) => {
 
 const handleClick = async (e: any) => {
   e.preventDefault();
+
+  const prompt = `Who would win between ${firstHero?.name} vs. ${secondHero?.name}?`;
+
   const response = await fetch("/api/generate", {
     method: "POST",
     headers: {
