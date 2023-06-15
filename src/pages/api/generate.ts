@@ -13,7 +13,7 @@ export default async function handler(
   if (req.method === 'POST') {
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages: [{"role": "system", "content": "You are a helpful assistant."}, {"role": "user", "content": "Hello!"}],
+      messages: [{"role": "system", "content": "You are a comic book expert."}, {"role": "user", "content": "Who would win in a match between batman and superman?"}],
       temperature: 0.9,
       max_tokens: 150,
       top_p: 1,
