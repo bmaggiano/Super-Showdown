@@ -73,7 +73,7 @@ const handleClick = async (e: any) => {
   const responseText = data.response; // Access the response value from the JSON object
 
   console.log(responseText);
-  setResponseText((prev) => prev + responseText);
+  setResponseText(responseText);
 };
 
 
@@ -84,8 +84,35 @@ const handleClick = async (e: any) => {
       <br/>
     </main>
 
+    <section className={styles.randomSelector}>
+      <div>
+      <button
+      onClick={(e) => handleFirstHero(e)}
+      >Superhero 1</button>
+      <div>
+        <p>
+          {firstHero?.name}
+          </p>
+      </div>
+      </div>
+
+    <div>
+      <button
+      onClick={(e) => handleSecondHero(e)}
+      >Superhero 2</button>
+      <div>
+        <p>
+          {secondHero?.name}
+          </p>
+      </div>
+      </div>
+
+
+        </section>
+
+
 {firstHero && secondHero && (
-    <section className={styles.section}>
+    <section className={styles.whoWins}>
       <div>
       <button
       onClick={(e) => handleClick(e)}>
@@ -98,28 +125,7 @@ const handleClick = async (e: any) => {
         </section>
         )}
 
-        <section>
-      <button
-      onClick={(e) => handleFirstHero(e)}
-      >Superhero 1</button>
 
-      <div>
-        <p>
-          {firstHero?.name}
-          </p>
-      </div>
-
-      <button
-      onClick={(e) => handleSecondHero(e)}
-      >Superhero 2</button>
-
-      <div>
-        <p>
-          {secondHero?.name}
-          </p>
-      </div>
-
-        </section>
         </>
   )
 }
