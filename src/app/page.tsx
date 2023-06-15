@@ -93,6 +93,7 @@ const handleClick = async (e: any) => {
         <p>
           {firstHero?.name}
           </p>
+          <img className={styles.heroPic} src={firstHero?.image.url} alt={firstHero?.name} />
       </div>
       </div>
 
@@ -104,6 +105,7 @@ const handleClick = async (e: any) => {
         <p>
           {secondHero?.name}
           </p>
+          <img className={styles.heroPic} src={secondHero?.image.url} alt={secondHero?.name} />
       </div>
       </div>
 
