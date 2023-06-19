@@ -6,13 +6,23 @@ import styles from './page.module.css'
 export default function Home() {
 
 const [responseText, setResponseText] = useState("")
-const [firstHero, setFirstHero] = useState<any>(null)
+const [firstHero, setFirstHero] = useState<any>([])
+const [userChoice, setUserChoice] = useState<any>("")
 const [secondHero, setSecondHero] = useState<any>(null)
+
+// define the type of data that gets brought in to prevent future errors
+interface Hero {
+  id: number;
+  name: string;
+  image: {
+    url: string;
+  };
+}
 
 const handleFirstHero = async (e: any) => {
   e.preventDefault();
 
-  const response = await fetch("/api/superhero", {
+  const response = await fetch("/api/threeCharacters", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -31,7 +41,7 @@ const handleFirstHero = async (e: any) => {
 const handleSecondHero = async (e: any) => {
   e.preventDefault();
 
-  const response = await fetch("/api/superhero", {
+  const response = await fetch("/api/oponent", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -52,7 +62,7 @@ const handleSecondHero = async (e: any) => {
 const handleClick = async (e: any) => {
   e.preventDefault();
 
-  const prompt = `Who would win between ${firstHero?.name} vs. ${secondHero?.name}?`;
+  const prompt = `Who would win between ${userChoice} vs. ${secondHero?.name}?`;
 
   const response = await fetch("/api/generate", {
     method: "POST",
@@ -90,10 +100,19 @@ const handleClick = async (e: any) => {
       onClick={(e) => handleFirstHero(e)}
       >Superhero 1</button>
       <div>
-        <p>
-          {firstHero?.name}
-          </p>
-          <img className={styles.heroPic} src={firstHero?.image.url} alt={firstHero?.name} />
+
+      {firstHero && firstHero.map((hero: Hero) => (
+        <div key={hero?.id}>
+          <p>
+            {hero?.name}
+            </p>
+            <img className={styles.heroPic} src={hero?.image.url} alt={hero?.name} />
+            <button
+            onClick={() => setUserChoice(hero?.name)}>Choose {hero?.name}</button>
+          </div>
+        ))}
+
+
       </div>
       </div>
 
@@ -113,12 +132,12 @@ const handleClick = async (e: any) => {
         </section>
 
 
-{firstHero && secondHero && (
+{userChoice && secondHero && (
     <section className={styles.whoWins}>
       <div>
       <button
       onClick={(e) => handleClick(e)}>
-        Who would win between {firstHero?.name} vs. {secondHero?.name}?
+        Who would win between {userChoice} vs. {secondHero?.name}?
       </button>
         </div>
         <div>
