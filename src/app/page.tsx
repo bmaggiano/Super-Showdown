@@ -62,7 +62,7 @@ const handleSecondHero = async (e: any) => {
 const handleClick = async (e: any) => {
   e.preventDefault();
 
-  const prompt = `Who would win between ${userChoice} vs. ${secondHero?.name}?`;
+  const prompt = `Who would win between ${userChoice} vs. ${secondHero?.name}? Please give this response using a max number of 150 tokens.`;
 
   const response = await fetch("/api/generate", {
     method: "POST",
@@ -103,12 +103,20 @@ const handleClick = async (e: any) => {
 
       {firstHero && firstHero.map((hero: Hero) => (
         <div key={hero?.id}>
+          <div className={styles.characterCard}>
+
+          <div className={styles.characterPic}>
+            <img className={styles.heroPic} src={hero?.image.url} alt={hero?.name} />
+            </div>
+
+<div className={styles.characterData}>
           <p>
             {hero?.name}
             </p>
-            <img className={styles.heroPic} src={hero?.image.url} alt={hero?.name} />
             <button
             onClick={() => setUserChoice(hero?.name)}>Choose {hero?.name}</button>
+            </div>
+            </div>
           </div>
         ))}
 
@@ -120,12 +128,20 @@ const handleClick = async (e: any) => {
       <button
       onClick={(e) => handleSecondHero(e)}
       >Superhero 2</button>
-      <div>
+      {secondHero && (
+
+        <div className={styles.characterCard}>
+        <div className={styles.characterPic}>
+          <img className={styles.heroPic} src={secondHero?.image.url} alt={secondHero?.name} />
+        </div>
+        <div className={styles.characterData}>
+
         <p>
           {secondHero?.name}
           </p>
-          <img className={styles.heroPic} src={secondHero?.image.url} alt={secondHero?.name} />
+        </div>
       </div>
+        )}
       </div>
 
 

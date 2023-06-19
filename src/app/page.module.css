@@ -14,6 +14,19 @@
   text-align: center;
 }
 
+.characterCard {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: .1rem solid black;
+  border-radius: .5rem;
+  margin: 1rem;
+}
+
+.characterData {
+  padding-left: 1rem;
+}
+
 .heroPic {
   width: 5rem;
   border-radius: 1rem ;
