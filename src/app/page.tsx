@@ -112,7 +112,7 @@ export default function Home() {
                 <div key={hero?.id}>
                   <div className={styles.characterCard} style={{ backgroundImage: `url(${hero?.image.url})` }}>
 
-                    {/* <div className={styles.characterData}> */}
+                    <div className={styles.characterData}>
                       <p>{hero?.name}</p>
                       {hero.powerstats.intelligence !== 'null' ? (
                         <>
@@ -134,7 +134,7 @@ export default function Home() {
                       </button>
                     </div>
                   </div>
-                // </div>
+                </div>
               ))}
           </div>
         </div>
