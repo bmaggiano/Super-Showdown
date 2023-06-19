@@ -8,7 +8,11 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6, p, span, button, textarea, form, a {
+ul {
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, button, textarea, form, a, li {
   font-family: sans-serif;
 }
 

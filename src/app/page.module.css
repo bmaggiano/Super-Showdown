@@ -16,15 +16,22 @@
 
 .characterCard {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   padding: 1rem;
   border: .1rem solid black;
   border-radius: .5rem;
   margin: 1rem;
+  background-size: cover;
+  background-position: center;
+}
+
+.characterCard img {
+  width: 10rem;
 }
 
 .characterData {
   padding-left: 1rem;
+  margin: 0 auto;
 }
 
 .heroPic {
