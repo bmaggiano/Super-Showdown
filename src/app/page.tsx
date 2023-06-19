@@ -113,16 +113,22 @@ export default function Home() {
                   <div className={styles.characterCard} style={{ backgroundImage: `url(${hero?.image.url})` }}>
 
                     <div className={styles.characterData}>
-                      <p>{hero?.name}</p>
+                      <h3>{hero?.name}</h3>
                       {hero.powerstats.intelligence !== 'null' ? (
                         <>
                         <p>PowerStats:</p>
+                        <div className={styles.powerStats}>
+                        <div>
                         <p>Intelligence: {hero?.powerstats?.intelligence}</p>
                         <p>Strengh: {hero?.powerstats?.strength}</p>
                         <p>Speed: {hero?.powerstats?.speed}</p>
-                        <p>Durability: {hero?.powerstats?.durability}</p>
+                        </div>
+                        <div>
                         <p>Power: {hero?.powerstats.power}</p>
+                        <p>Durability: {hero?.powerstats?.durability}</p>
                         <p>Combat: {hero?.powerstats?.combat}</p>
+                        </div>
+                        </div>
                         </>
                       ) : (
                         <>

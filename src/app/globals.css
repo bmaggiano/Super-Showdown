@@ -20,3 +20,7 @@ span {
   font-style: italic;
 }
 
+button {
+  cursor: pointer;
+}
+
