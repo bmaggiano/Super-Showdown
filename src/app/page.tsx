@@ -98,19 +98,19 @@ export default function Home() {
         <br />
       </main>
 
-      <section className={styles.randomSelector}>
-        <div>
+        <div className={styles.firstAction}>
           {firstHero.length === 0 && (
             <button onClick={(e) => handleFirstHero(e)}>Superhero 1</button>
-          )}
+            )}
           {firstHero.length > 0 && (
             <h2>Choose your character!</h2>
-          )}
-          <div>
+            )}
+            </div>
+      <section className={styles.randomSelector}>
             {firstHero &&
               firstHero.map((hero: Hero) => (
-                <div key={hero?.id}>
-                  <div className={styles.characterCard} style={{ backgroundImage: `url(${hero?.image.url})` }}>
+                <div key={hero?.id}
+                  className={styles.characterCard} style={{ backgroundImage: `url(${hero?.image.url})` }}>
 
                     <div className={styles.characterData}>
                       <h3>{hero?.name}</h3>
@@ -140,10 +140,8 @@ export default function Home() {
                       </button>
                     </div>
                   </div>
-                </div>
               ))}
-          </div>
-        </div>
+          </section>
 
         <div>
           <button onClick={(e) => handleSecondHero(e)}>Superhero 2</button>
@@ -162,7 +160,6 @@ export default function Home() {
             </div>
           )}
         </div>
-      </section>
 
       {userChoice && secondHero && (
         <section className={styles.whoWins}>
