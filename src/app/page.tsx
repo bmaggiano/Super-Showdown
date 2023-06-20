@@ -146,17 +146,28 @@ export default function Home() {
         <div>
           <button onClick={(e) => handleSecondHero(e)}>Superhero 2</button>
           {secondHero && (
-            <div className={styles.characterCard}>
-              <div className={styles.characterPic}>
+            <div className={styles.characterCardTwo}>
                 <img
-                  className={styles.heroPic}
+                  className={styles.heroPicTwo}
                   src={secondHero?.image.url}
                   alt={secondHero?.name}
                 />
-              </div>
-              <div className={styles.characterData}>
-                <p>{secondHero?.name}</p>
-              </div>
+                <div>
+                  <h3>{secondHero?.name}</h3>
+                <p>PowerStats:</p>
+                        <div className={styles.powerStats}>
+                        <div>
+                        <p>Intelligence: {secondHero?.powerstats?.intelligence}</p>
+                        <p>Strengh: {secondHero?.powerstats?.strength}</p>
+                        <p>Speed: {secondHero?.powerstats?.speed}</p>
+                        </div>
+                        <div>
+                        <p>Power: {secondHero?.powerstats.power}</p>
+                        <p>Durability: {secondHero?.powerstats?.durability}</p>
+                        <p>Combat: {secondHero?.powerstats?.combat}</p>
+                        </div>
+                        </div>
+            </div>
             </div>
           )}
         </div>

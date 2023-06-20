@@ -56,3 +56,27 @@
 .whoWins {
   flex-direction: column;
 }
+
+.characterCardTwo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: .1rem solid black;
+  margin: 0 auto;
+  /* padding: 1rem; */
+  border-radius: .5rem;
+  width: 15rem;
+}
+
+.heroPicTwo {
+  width: 15rem;
+  height: 15rem;
+  border-radius: .5rem .5rem 0 0;
+
+}
+
+@media screen and (max-width: 650px) {
+  .randomSelector {
+    flex-direction: column;
+  }
+}
