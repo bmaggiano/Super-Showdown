@@ -49,6 +49,11 @@
   margin: 1rem;
 }
 
+.powerStatsGroup {
+  padding-inline: 1rem; /* Adjust the margin as needed to create space between the divs */
+}
+
+
 .whoWins {
   flex-direction: column;
 }

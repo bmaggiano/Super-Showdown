@@ -1,7 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
-import { Heart, Brain, Barbell, Wind } from "phosphor-react";
+import {
+  Heart,
+  Brain,
+  Barbell,
+  BatteryFull,
+  HandFist,
+  Wind,
+} from "phosphor-react";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -123,28 +130,50 @@ export default function Home() {
                   <>
                     <p>PowerStats:</p>
                     <div className={styles.powerStats}>
-                      <div>
-                      <p>
-  <span className={styles.icon}>
-    <Brain color="pink" weight="duotone" size={20} />
-  </span>: {hero?.powerstats?.intelligence}
-</p>
-                        <p>  <span className={styles.icon}>
-                          <Barbell color="black" weight="duotone" size={20}/>
-</span>: {hero?.powerstats?.strength}</p>
-                        <p><span className={styles.icon}>
-  <Wind color="yellow" weight="fill" size={20}/>
-                        </span>: {hero?.powerstats?.speed}
-</p>
+                      <div className={styles.powerStatsGroup}>
+                        <p>
+                          <span className={styles.icon}>
+                            <Brain color="pink" weight="duotone" size={20} />
+                          </span>
+                          : {hero?.powerstats?.intelligence}
+                        </p>
+                        <p>
+                          {" "}
+                          <span className={styles.icon}>
+                            <Barbell color="black" weight="duotone" size={20} />
+                          </span>
+                          : {hero?.powerstats?.strength}
+                        </p>
+                        <p>
+                          <span className={styles.icon}>
+                            <Wind color="yellow" weight="fill" size={20} />
+                          </span>
+                          : {hero?.powerstats?.speed}
+                        </p>
                       </div>
-                      <div>
-                        <p>Power: {hero?.powerstats.power}</p>
+                      <div className={styles.powerStatsGroup}>
+                        <p>
+                          <span className={styles.icon}>
+                            <BatteryFull
+                              color="green"
+                              weight="duotone"
+                              size={20}
+                            />
+                          </span>
+                          : {hero?.powerstats.power}
+                        </p>
                         <p>
                           <span className={styles.icon}>
                             <Heart color="#AE2983" weight="fill" size={20} />
-                          </span>: {hero?.powerstats?.durability}
+                          </span>
+                          : {hero?.powerstats?.durability}
                         </p>
-                        <p>Combat: {hero?.powerstats?.combat}</p>
+                        <p>
+                          <span className={styles.icon}>
+                            <HandFist color="black" weight="fill" size={20} />
+                          </span>
+                          : {hero?.powerstats?.combat}
+                        </p>
                       </div>
                     </div>
                   </>
