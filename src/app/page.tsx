@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { Heart, Brain, Barbell, Wind } from "phosphor-react";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -101,80 +102,93 @@ export default function Home() {
         <br />
       </main>
 
-        <div className={styles.firstAction}>
-          {firstHero.length === 0 && (
-            <button onClick={(e) => handleFirstHero(e)}>Superhero 1</button>
-            )}
-          {firstHero.length > 0 && (
-            <h2>Choose your character!</h2>
-            )}
-            </div>
+      <div className={styles.firstAction}>
+        {firstHero.length === 0 && (
+          <button onClick={(e) => handleFirstHero(e)}>Superhero 1</button>
+        )}
+        {firstHero.length > 0 && <h2>Choose your character!</h2>}
+      </div>
       <section className={styles.randomSelector}>
-            {firstHero &&
-              firstHero.map((hero: Hero) => (
-                <div key={hero?.id}
-                  className={styles.characterCard} style={{ backgroundImage: `url(${hero?.image.url})` }}>
-
-                    <div className={styles.characterData}>
-                      <h3>{hero?.name}</h3>
-                      <span>{hero?.biography["full-name"]}</span>
-                      {hero.powerstats.intelligence !== 'null' ? (
-                        <>
-                        <p>PowerStats:</p>
-                        <div className={styles.powerStats}>
-                        <div>
-                        <p>Intelligence: {hero?.powerstats?.intelligence}</p>
-                        <p>Strengh: {hero?.powerstats?.strength}</p>
-                        <p>Speed: {hero?.powerstats?.speed}</p>
-                        </div>
-                        <div>
+        {firstHero &&
+          firstHero.map((hero: Hero) => (
+            <div
+              key={hero?.id}
+              className={styles.characterCard}
+              style={{ backgroundImage: `url(${hero?.image.url})` }}
+            >
+              <div className={styles.characterData}>
+                <h3>{hero?.name}</h3>
+                <span>{hero?.biography["full-name"]}</span>
+                {hero.powerstats.intelligence !== "null" ? (
+                  <>
+                    <p>PowerStats:</p>
+                    <div className={styles.powerStats}>
+                      <div>
+                      <p>
+  <span className={styles.icon}>
+    <Brain color="pink" weight="duotone" size={20} />
+  </span>: {hero?.powerstats?.intelligence}
+</p>
+                        <p>  <span className={styles.icon}>
+                          <Barbell color="black" weight="duotone" size={20}/>
+</span>: {hero?.powerstats?.strength}</p>
+                        <p><span className={styles.icon}>
+  <Wind color="yellow" weight="fill" size={20}/>
+                        </span>: {hero?.powerstats?.speed}
+</p>
+                      </div>
+                      <div>
                         <p>Power: {hero?.powerstats.power}</p>
-                        <p>Durability: {hero?.powerstats?.durability}</p>
+                        <p>
+                          <span className={styles.icon}>
+                            <Heart color="#AE2983" weight="fill" size={20} />
+                          </span>: {hero?.powerstats?.durability}
+                        </p>
                         <p>Combat: {hero?.powerstats?.combat}</p>
-                        </div>
-                        </div>
-                        </>
-                      ) : (
-                        <>
-                        <p>Powerstats not available</p>
-                        </>
-                      )}
-                      <button onClick={() => setUserChoice(hero?.name)}>
-                        Choose: {hero?.name}
-                      </button>
+                      </div>
                     </div>
-                  </div>
-              ))}
-          </section>
+                  </>
+                ) : (
+                  <>
+                    <p>Powerstats not available</p>
+                  </>
+                )}
+                <button onClick={() => setUserChoice(hero?.name)}>
+                  Choose: {hero?.name}
+                </button>
+              </div>
+            </div>
+          ))}
+      </section>
 
-        <div>
-          <button onClick={(e) => handleSecondHero(e)}>Superhero 2</button>
-          {secondHero && (
-            <div className={styles.characterCardTwo}>
-                <img
-                  className={styles.heroPicTwo}
-                  src={secondHero?.image.url}
-                  alt={secondHero?.name}
-                />
-                <div className={styles.characterDataTwo}>
-                  <h3>{secondHero?.name}</h3>
-                  <span>{secondHero?.biography["full-name"]}</span>
-                        <div className={styles.powerStats}>
-                        <div>
-                        <p>Intelligence: {secondHero?.powerstats?.intelligence}</p>
-                        <p>Strengh: {secondHero?.powerstats?.strength}</p>
-                        <p>Speed: {secondHero?.powerstats?.speed}</p>
-                        </div>
-                        <div>
-                        <p>Power: {secondHero?.powerstats.power}</p>
-                        <p>Durability: {secondHero?.powerstats?.durability}</p>
-                        <p>Combat: {secondHero?.powerstats?.combat}</p>
-                        </div>
-                        </div>
+      <div>
+        <button onClick={(e) => handleSecondHero(e)}>Superhero 2</button>
+        {secondHero && (
+          <div className={styles.characterCardTwo}>
+            <img
+              className={styles.heroPicTwo}
+              src={secondHero?.image.url}
+              alt={secondHero?.name}
+            />
+            <div className={styles.characterDataTwo}>
+              <h3>{secondHero?.name}</h3>
+              <span>{secondHero?.biography["full-name"]}</span>
+              <div className={styles.powerStats}>
+                <div>
+                  <p>Intelligence: {secondHero?.powerstats?.intelligence}</p>
+                  <p>Strengh: {secondHero?.powerstats?.strength}</p>
+                  <p>Speed: {secondHero?.powerstats?.speed}</p>
+                </div>
+                <div>
+                  <p>Power: {secondHero?.powerstats.power}</p>
+                  <p>Durability: {secondHero?.powerstats?.durability}</p>
+                  <p>Combat: {secondHero?.powerstats?.combat}</p>
+                </div>
+              </div>
             </div>
-            </div>
-          )}
-        </div>
+          </div>
+        )}
+      </div>
 
       {userChoice && secondHero && (
         <section className={styles.whoWins}>

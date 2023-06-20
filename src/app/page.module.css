@@ -35,7 +35,7 @@
 }
 
 .characterData {
-  margin: 0 auto;
+  align-items: center;
   backdrop-filter: blur(.25rem);
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: .5rem;
@@ -71,8 +71,13 @@
   width: 15rem;
   height: 15rem;
   border-radius: .5rem .5rem 0 0;
-
 }
+
+.icon {
+  vertical-align: middle;
+  display: inline-block;
+}
+
 
 @media screen and (max-width: 650px) {
   .randomSelector {
