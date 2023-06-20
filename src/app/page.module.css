@@ -66,10 +66,12 @@
   margin: 0 auto;
   border-radius: .5rem;
   width: 15rem;
+  background-color: black;
 }
 
 .characterDataTwo {
   text-align: center;
+  color: white;
 }
 
 .heroPicTwo {

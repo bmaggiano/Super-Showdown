@@ -128,7 +128,6 @@ export default function Home() {
                 <span>{hero?.biography["full-name"]}</span>
                 {hero.powerstats.intelligence !== "null" ? (
                   <>
-                    <p>PowerStats:</p>
                     <div className={styles.powerStats}>
                       <div className={styles.powerStatsGroup}>
                         <p>
@@ -203,17 +202,52 @@ export default function Home() {
               <h3>{secondHero?.name}</h3>
               <span>{secondHero?.biography["full-name"]}</span>
               <div className={styles.powerStats}>
-                <div>
-                  <p>Intelligence: {secondHero?.powerstats?.intelligence}</p>
-                  <p>Strengh: {secondHero?.powerstats?.strength}</p>
-                  <p>Speed: {secondHero?.powerstats?.speed}</p>
-                </div>
-                <div>
-                  <p>Power: {secondHero?.powerstats.power}</p>
-                  <p>Durability: {secondHero?.powerstats?.durability}</p>
-                  <p>Combat: {secondHero?.powerstats?.combat}</p>
-                </div>
-              </div>
+                      <div className={styles.powerStatsGroup}>
+                        <p>
+                          <span className={styles.icon}>
+                            <Brain color="pink" weight="duotone" size={20} />
+                          </span>
+                          : {secondHero?.powerstats?.intelligence}
+                        </p>
+                        <p>
+                          {" "}
+                          <span className={styles.icon}>
+                            <Barbell color="white" weight="duotone" size={20} />
+                          </span>
+                          : {secondHero?.powerstats?.strength}
+                        </p>
+                        <p>
+                          <span className={styles.icon}>
+                            <Wind color="yellow" weight="fill" size={20} />
+                          </span>
+                          : {secondHero?.powerstats?.speed}
+                        </p>
+                      </div>
+                      <div className={styles.powerStatsGroup}>
+                        <p>
+                          <span className={styles.icon}>
+                            <BatteryFull
+                              color="green"
+                              weight="duotone"
+                              size={20}
+                            />
+                          </span>
+                          : {secondHero?.powerstats.power}
+                        </p>
+                        <p>
+                          <span className={styles.icon}>
+                            <Heart color="#AE2983" weight="fill" size={20} />
+                          </span>
+                          : {secondHero?.powerstats?.durability}
+                        </p>
+                        <p>
+                          <span className={styles.icon}>
+                            <HandFist color="white" weight="fill" size={20} />
+                          </span>
+                          : {secondHero?.powerstats?.combat}
+                        </p>
+                      </div>
+                    </div>
             </div>
           </div>
         )}
