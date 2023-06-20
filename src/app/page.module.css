@@ -19,6 +19,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.firstAction button {
+  border: .1rem solid black;
+  border-radius: .5rem;
+  padding: .5rem;
 }
 
 .characterCard {
@@ -42,6 +50,16 @@
   color: white;
   padding: 1rem;
   margin: 1rem;
+}
+
+.characterData button {
+  border: .1rem solid black;
+  border-radius: .5rem;
+  padding: .5rem;
+}
+
+.characterData button:hover {
+  background-color: lightgray;
 }
 
 .powerStats {

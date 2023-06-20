@@ -137,7 +137,6 @@ export default function Home() {
                           : {hero?.powerstats?.intelligence}
                         </p>
                         <p>
-                          {" "}
                           <span className={styles.icon}>
                             <Barbell color="black" weight="duotone" size={20} />
                           </span>
@@ -190,7 +189,9 @@ export default function Home() {
       </section>
 
       <div>
+        <div className={styles.firstAction}>
         <button onClick={(e) => handleSecondHero(e)}>Superhero 2</button>
+        </div>
         {secondHero && (
           <div className={styles.characterCardTwo}>
             <img
