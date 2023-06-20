@@ -24,6 +24,9 @@ export default function Home() {
       power: string;
       combat: string;
     };
+    biography: {
+      "full-name": string;
+    };
   }
 
   const handleFirstHero = async (e: any) => {
@@ -114,6 +117,7 @@ export default function Home() {
 
                     <div className={styles.characterData}>
                       <h3>{hero?.name}</h3>
+                      <span>{hero?.biography["full-name"]}</span>
                       {hero.powerstats.intelligence !== 'null' ? (
                         <>
                         <p>PowerStats:</p>
@@ -152,9 +156,9 @@ export default function Home() {
                   src={secondHero?.image.url}
                   alt={secondHero?.name}
                 />
-                <div>
+                <div className={styles.characterDataTwo}>
                   <h3>{secondHero?.name}</h3>
-                <p>PowerStats:</p>
+                  <span>{secondHero?.biography["full-name"]}</span>
                         <div className={styles.powerStats}>
                         <div>
                         <p>Intelligence: {secondHero?.powerstats?.intelligence}</p>

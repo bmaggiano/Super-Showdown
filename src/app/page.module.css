@@ -34,10 +34,6 @@
   min-height: 15rem;
 }
 
-.characterCard img {
-  width: 10rem;
-}
-
 .characterData {
   margin: 0 auto;
   backdrop-filter: blur(.25rem);
@@ -63,9 +59,12 @@
   align-items: center;
   border: .1rem solid black;
   margin: 0 auto;
-  /* padding: 1rem; */
   border-radius: .5rem;
   width: 15rem;
+}
+
+.characterDataTwo {
+  text-align: center;
 }
 
 .heroPicTwo {
