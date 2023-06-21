@@ -78,7 +78,7 @@ export default function Home() {
   const handleClick = async (e: any) => {
     e.preventDefault();
 
-    const prompt = `Who would win between ${userChoice} vs. ${secondHero?.name}? Please give this response using a max number of 150 tokens.`;
+    const prompt = `Without any explanation, who would win between ${userChoice} vs. ${secondHero?.name}? Then give a one sentence explanation of how this character would win.`;
 
     const response = await fetch("/api/generate", {
       method: "POST",
@@ -124,7 +124,12 @@ export default function Home() {
         {firstHero.length === 0 && (
           <button onClick={(e) => handleFirstHero(e)}>Superhero 1</button>
         )}
-        {firstHero.length > 0 && <h2>Choose your character!</h2>}
+        {firstHero.length > 0 && (<>
+        <h2>Choose your character!</h2>
+        <span>you only get one shot at this!</span>
+        </>
+        )
+      }
       </div>
       <section className={styles.randomSelector}>
         {firstHero &&
@@ -199,16 +204,34 @@ export default function Home() {
                     <p>Powerstats not available</p>
                   </>
                 )}
+                {!userChoice && 
                 <button className="userPick" onClick={() => setUserChoice(hero?.name)}>
                   Choose: {hero?.name}
                 </button>
+                }
             </div>
           ))}
       </section>
 
       <div>
         <div className={styles.firstAction}>
+          {!secondHero && 
         <button onClick={(e) => handleSecondHero(e)}>Superhero 2</button>
+          }
+                {userChoice && secondHero && (
+        <>
+          <div className={styles.whoWins}>
+            <button onClick={(e) => handleClick(e)}>
+              Who would win between <span>{userChoice}</span> vs. <span>{secondHero?.name}</span>?
+            </button>
+          </div>
+            {responseText && 
+          <div className={styles.responseContainer}>
+            <h4>{responseText}</h4>
+          </div>
+            }
+        </>
+      )}
         </div>
         {secondHero && (
           <div className={styles.characterCard}>
@@ -273,20 +296,9 @@ export default function Home() {
             </div>
           </div>
         )}
+
       </div>
 
-      {userChoice && secondHero && (
-        <section className={styles.whoWins}>
-          <div>
-            <button onClick={(e) => handleClick(e)}>
-              Who would win between {userChoice} vs. {secondHero?.name}?
-            </button>
-          </div>
-          <div>
-            <h6>{responseText}</h6>
-          </div>
-        </section>
-      )}
     </>
   );
 }

@@ -20,6 +20,7 @@
 .firstAction {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   padding-top: 2rem;
   padding-bottom: 2rem;
@@ -86,6 +87,33 @@
 
 .whoWins {
   flex-direction: column;
+}
+
+.whoWins button {
+  font-family: 'Comic Neue', sans-serif;
+  font-weight: 400;
+  font-size: 1.25rem;
+}
+
+.whoWins span {
+  font-family: 'Comic Neue', sans-serif;
+  font-weight: 700;
+}
+
+.responseContainer {
+  border: .1rem solid black;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: .5rem;
+  text-align: center;
+  width: 30rem;
+  background-color: rgba(211, 211, 211, 0.473);
+}
+
+.responseContainer h4 {
+  font-family: 'Comic Neue', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
 }
 
 .characterCard {
