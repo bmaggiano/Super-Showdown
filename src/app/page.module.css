@@ -77,18 +77,29 @@
 }
 
 .characterCardTwo {
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   align-items: center;
   border: .5rem solid black;
   margin: 0 auto;
   border-radius: 1rem;
   width: 20rem;
-  background-color: black;
+  background-image: url(../../public/space.jpg);
+  background-size: cover;
   color: white;
 }
 
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+}
+
 .characterDataTwo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   color: white;
 }

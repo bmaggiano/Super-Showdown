@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Head from "next/head";
 import {
   Heart,
   Brain,
@@ -102,6 +103,11 @@ export default function Home() {
 
   return (
     <>
+
+    <Head>
+
+    </Head>
+
       <main className={styles.main}>
         <h1>
           Super <span>Showdown</span>
@@ -194,8 +200,10 @@ export default function Home() {
         </div>
         {secondHero && (
           <div className={styles.characterCardTwo}>
+            <div className={styles.cardHeader}>
             <h3>{secondHero?.name}</h3>
             <span>{secondHero?.biography["full-name"]}</span>
+            </div>
             <br/>
             <img
               className={styles.heroPicTwo}
