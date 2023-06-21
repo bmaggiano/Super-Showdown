@@ -138,7 +138,7 @@ export default function Home() {
                         </p>
                         <p>
                           <span className={styles.icon}>
-                            <Barbell color="black" weight="duotone" size={20} />
+                            <Barbell color="white" weight="duotone" size={20} />
                           </span>
                           : {hero?.powerstats?.strength}
                         </p>
@@ -168,7 +168,7 @@ export default function Home() {
                         </p>
                         <p>
                           <span className={styles.icon}>
-                            <HandFist color="black" weight="fill" size={20} />
+                            <HandFist color="white" weight="fill" size={20} />
                           </span>
                           : {hero?.powerstats?.combat}
                         </p>
@@ -194,14 +194,15 @@ export default function Home() {
         </div>
         {secondHero && (
           <div className={styles.characterCardTwo}>
+            <h3>{secondHero?.name}</h3>
+            <span>{secondHero?.biography["full-name"]}</span>
+            <br/>
             <img
               className={styles.heroPicTwo}
               src={secondHero?.image.url}
               alt={secondHero?.name}
             />
             <div className={styles.characterDataTwo}>
-              <h3>{secondHero?.name}</h3>
-              <span>{secondHero?.biography["full-name"]}</span>
               <div className={styles.powerStats}>
                       <div className={styles.powerStatsGroup}>
                         <p>
