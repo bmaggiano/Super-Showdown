@@ -2,6 +2,8 @@
 /* to use in page.tsx use <main className={styles.main}> */
 /* then in this css doc, just use basic .main css syntax */
 
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Comic+Neue:ital,wght@0,400;1,400;1,700&display=swap');
+
 .main {
   display: flex;
   justify-content: center;
@@ -40,6 +42,12 @@
   background-position: center;
   min-width: 12rem;
   min-height: 15rem;
+  box-shadow: .5rem .5rem 1rem black;
+}
+
+.characterCard:hover {
+  box-shadow: .5rem .5rem .75rem black;
+  cursor: pointer;
 }
 
 .characterData {
@@ -50,6 +58,25 @@
   color: white;
   padding: 1rem;
   margin: 1rem;
+}
+
+.characterData h3 {
+  font-family: 'Comic Neue', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.characterData span {
+  font-family: 'Comic Neue', sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.characterData p {
+  margin: .5rem;
+  font-family: 'Comic Neue', sans-serif;
+  font-weight: 400;
+  font-size: 1.25rem;
 }
 
 .characterData button {
@@ -87,6 +114,7 @@
   background-image: url(../../public/space.jpg);
   background-size: cover;
   color: white;
+  box-shadow: .5rem .5rem 1rem black;
 }
 
 .cardHeader {
@@ -94,6 +122,19 @@
   align-items: center;
   justify-content: space-around;
   text-align: center;
+  margin-top: .5rem;
+}
+
+.cardHeader h3 {
+  font-family: 'Comic Neue', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.cardHeader span {
+  font-family: 'Comic Neue', sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
 }
 
 .characterDataTwo {
@@ -102,13 +143,21 @@
   justify-content: center;
   text-align: center;
   color: white;
+  /* margin: .5rem; */
+  border-radius: 0 0 .5rem .5rem;
+}
+
+.characterDataTwo p {
+  margin: .5rem;
+  font-family: 'Comic Neue', sans-serif;
+  font-weight: 400;
+  font-size: 1.25rem;
 }
 
 .heroPicTwo {
   width: 20rem;
   height: 20rem;
   object-fit: cover;
-  /* border-radius: .5rem .5rem 0 0; */
 }
 
 .icon {
