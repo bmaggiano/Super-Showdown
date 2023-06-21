@@ -199,7 +199,7 @@ export default function Home() {
                     <p>Powerstats not available</p>
                   </>
                 )}
-                <button onClick={() => setUserChoice(hero?.name)}>
+                <button className="userPick" onClick={() => setUserChoice(hero?.name)}>
                   Choose: {hero?.name}
                 </button>
             </div>

@@ -31,6 +31,16 @@
   padding: .5rem;
 }
 
+.characterCard button {
+  border: .1rem solid black;
+  border-radius: .5rem;
+  padding: .5rem;
+  font-family: 'Comic Neue', sans-serif;
+  color: black;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
 .characterData {
   align-items: center;
   backdrop-filter: blur(.1rem);
@@ -60,13 +70,7 @@
   font-size: 1.25rem;
 }
 
-.characterData button {
-  border: .1rem solid black;
-  border-radius: .5rem;
-  padding: .5rem;
-}
-
-.characterData button:hover {
+.characterCard button:hover {
   background-color: lightgray;
 }
 
@@ -135,8 +139,13 @@
 }
 
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 850px) {
   .randomSelector {
     flex-direction: column;
+  }
+  .heroPic {
+    width: 15rem;
+    height: 15rem;
+    object-fit: cover;
   }
 }
