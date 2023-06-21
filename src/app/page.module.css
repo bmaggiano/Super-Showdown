@@ -31,29 +31,10 @@
   padding: .5rem;
 }
 
-.characterCard {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  border: .1rem solid black;
-  border-radius: .5rem;
-  margin: 1rem;
-  background-size: cover;
-  background-position: center;
-  min-width: 12rem;
-  min-height: 15rem;
-  box-shadow: .5rem .5rem 1rem black;
-}
-
-.characterCard:hover {
-  box-shadow: .5rem .5rem .75rem black;
-  cursor: pointer;
-}
-
 .characterData {
   align-items: center;
-  backdrop-filter: blur(1rem);
-  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(.1rem);
+  background-color: rgba(22, 22, 22, 0.3);
   border-radius: .5rem;
   color: white;
   padding: 1rem;
@@ -103,7 +84,7 @@
   flex-direction: column;
 }
 
-.characterCardTwo {
+.characterCard {
   /* display: flex; */
   flex-direction: column;
   align-items: center;
@@ -115,6 +96,11 @@
   background-size: cover;
   color: white;
   box-shadow: .5rem .5rem 1rem black;
+}
+
+.characterCard:hover {
+  box-shadow: .5rem .5rem .75rem black;
+  cursor: pointer;
 }
 
 .cardHeader {
@@ -137,24 +123,7 @@
   font-size: 1rem;
 }
 
-.characterDataTwo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
-  /* margin: .5rem; */
-  border-radius: 0 0 .5rem .5rem;
-}
-
-.characterDataTwo p {
-  margin: .5rem;
-  font-family: 'Comic Neue', sans-serif;
-  font-weight: 400;
-  font-size: 1.25rem;
-}
-
-.heroPicTwo {
+.heroPic {
   width: 20rem;
   height: 20rem;
   object-fit: cover;

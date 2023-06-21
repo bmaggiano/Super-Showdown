@@ -132,13 +132,20 @@ export default function Home() {
             <div
               key={hero?.id}
               className={styles.characterCard}
-              style={{ backgroundImage: `url(${hero?.image.url})` }}
             >
-              <div className={styles.characterData}>
+              <div className={styles.cardHeader}>
                 <h3>{hero?.name}</h3>
                 <span>{hero?.biography["full-name"]}</span>
+                </div>
+                <br/>
+                <img
+              className={styles.heroPic}
+              src={hero?.image.url}
+              alt={hero?.name}
+            />
                 {hero.powerstats.intelligence !== "null" ? (
                   <>
+              <div className={styles.characterData}>
                     <div className={styles.powerStats}>
                       <div className={styles.powerStatsGroup}>
                         <p>
@@ -185,6 +192,7 @@ export default function Home() {
                         </p>
                       </div>
                     </div>
+              </div>
                   </>
                 ) : (
                   <>
@@ -194,7 +202,6 @@ export default function Home() {
                 <button onClick={() => setUserChoice(hero?.name)}>
                   Choose: {hero?.name}
                 </button>
-              </div>
             </div>
           ))}
       </section>
@@ -204,18 +211,18 @@ export default function Home() {
         <button onClick={(e) => handleSecondHero(e)}>Superhero 2</button>
         </div>
         {secondHero && (
-          <div className={styles.characterCardTwo}>
+          <div className={styles.characterCard}>
             <div className={styles.cardHeader}>
             <h3>{secondHero?.name}</h3>
             <span>{secondHero?.biography["full-name"]}</span>
             </div>
             <br/>
             <img
-              className={styles.heroPicTwo}
+              className={styles.heroPic}
               src={secondHero?.image.url}
               alt={secondHero?.name}
             />
-            <div className={styles.characterDataTwo}>
+            <div className={styles.characterData}>
               <div className={styles.powerStats}>
                       <div className={styles.powerStatsGroup}>
                         <p>
