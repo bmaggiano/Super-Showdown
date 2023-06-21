@@ -11,7 +11,7 @@ import {
   Wind,
 } from "phosphor-react";
 import styles from "./page.module.css";
-import User from "./test/page";
+import User from "./userButton/page";
 
 export default function Home() {
   const [responseText, setResponseText] = useState("");
@@ -115,6 +115,7 @@ export default function Home() {
     </Head>
 
 <User/>
+{/* <CurrentUserInfo/> */}
 
       <main className={styles.main}>
         <h1>
