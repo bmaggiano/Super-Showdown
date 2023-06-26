@@ -106,7 +106,7 @@
   margin: 1rem;
   border-radius: .5rem;
   text-align: center;
-  width: 30rem;
+  max-width: 30rem;
   background-color: rgba(211, 211, 211, 0.473);
 }
 
@@ -165,9 +165,7 @@
   .randomSelector {
     flex-direction: column;
   }
-  .heroPic {
-    width: 15rem;
-    height: 15rem;
-    object-fit: cover;
+  .characterCard {
+    margin: 1rem;
   }
 }
