@@ -1,4 +1,3 @@
-"use client"
 /*
   This example requires some changes to your config:
   
@@ -13,70 +12,64 @@
   }
   ```
 */
-const features = [
-    {
-      name: 'An Opponent Appeared!',
-      description:
-        'Using the SuperHero API, a random opponent will be selected for you to prepare to battle against!',
-      imageSrc: './opponent.png',
-      imageAlt: 'White canvas laptop sleeve with gray felt interior, silver zipper, and tan leather zipper pull.',
-    },
-    {
-      name: 'Choose Your Character!',
-      description:
-        'Using the SuperHero API you will be given the choice of 3 characters to battle your opponent! There is over 600 choices available, but you only get to choose from three!',
-      imageSrc: './choose.png',
-      imageAlt: 'Detail of zipper pull with tan leather and silver rivet.',
-    },
-    {
-        name: 'The Power of AI',
-        description:
-          'Using the power of AI, ChatGPT will run a simulated battle between your character and your opponent and present to you a winner. If you win, your score will increment by 5, if you lose, your score will reset all the way back to 0!',
-        imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-feature-07-detail-01.jpg',
-        imageAlt: 'White canvas laptop sleeve with gray felt interior, silver zipper, and tan leather zipper pull.',
-      },
-  ]
-  
-  function classNames(...classes: string[]) {
-    return classes.filter(Boolean).join(' ')
-  }
-  
-  export default function Example() {
+export default function Example() {
     return (
-      <div className="bg-gray-200">
+      <div className="bg-gray-300">
         <div className="mx-auto max-w-2xl px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">How it works</h2>
-          </div>
+          {/* Details section */}
+          <section aria-labelledby="details-heading">
+            <div className="flex flex-col items-center text-center">
+              <h2 id="details-heading" className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                How it works
+              </h2>
+              <p className="mt-3 max-w-3xl text-lg text-gray-600">
+              Our patented padded snack sleeve construction protects your favorite treats from getting smooshed during
+              all-day adventures, long shifts at work, and tough travel schedules.
+            </p>
+            </div>
   
-          <div className="mt-16 space-y-16">
-            {features.map((feature, featureIdx) => (
-              <div
-                key={feature.name}
-                className="flex flex-col-reverse lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-8"
-              >
-                <div
-                  className={classNames(
-                    featureIdx % 2 === 0 ? 'lg:col-start-1' : 'lg:col-start-8 xl:col-start-9',
-                    'mt-6 lg:col-span-5 lg:row-start-1 lg:mt-0 xl:col-span-4'
-                  )}
-                >
-                  <h3 className="text-lg font-medium text-gray-900">{feature.name}</h3>
-                  <p className="mt-2 text-sm text-gray-500">{feature.description}</p>
+            <div className="mt-16 grid grid-cols- gap-y-16 lg:grid-cols-3 lg:gap-x-12">
+              <div>
+                <div className="aspect-h-2 aspect-w-3 w-full overflow-hidden rounded-lg">
+                  <img
+                    src="./choose.png"
+                    alt="Drawstring top with elastic loop closure and textured interior padding."
+                    className="h-48 w-full object-ontain object-center"
+                  />
                 </div>
-                <div
-                  className={classNames(
-                    featureIdx % 2 === 0 ? 'lg:col-start-6 xl:col-start-5' : 'lg:col-start-1',
-                    'flex-auto lg:col-span-7 lg:row-start-1 xl:col-span-8'
-                  )}
-                >
-                  <div className="aspect-h-2 aspect-w-5 overflow-hidden rounded-lg bg-gray-100">
-                    <img src={feature.imageSrc} alt={feature.imageAlt} className="object-cover object-center" />
-                  </div>
-                </div>
+                <p className="text-center mt-8 text-base text-gray-500">
+                  The 20L model has enough space for 370 candy bars, 6 cylinders of chips, 1220 standard gumballs, or any
+                  combination of on-the-go treats that your heart desires. Yes, we did the math.
+                </p>
               </div>
-            ))}
-          </div>
+              <div>
+                <div className="aspect-h-2 aspect-w-3 w-full overflow-hidden rounded-lg">
+                  <img
+                    src="./opponent.png"
+                    alt="Front zipper pouch with included key ring."
+                    className="h-48 w-full object-cover object-center"
+                  />
+                </div>
+                <p className="text-center mt-8 text-base text-gray-500">
+                  Up your snack organization game with multiple compartment options. The quick-access stash pouch is ready
+                  for even the most unexpected snack attacks and sharing needs.
+                </p>
+              </div>
+              <div>
+                <div className="aspect-h-2 aspect-w-3 w-full overflow-hidden rounded-lg">
+                  <img
+                    src="./ai.jpg"
+                    alt="Front zipper pouch with included key ring."
+                    className="h-48 w-full object-cover object-center"
+                  />
+                </div>
+                <p className="text-center mt-8 text-base text-gray-500">
+                  Up your snack organization game with multiple compartment options. The quick-access stash pouch is ready
+                  for even the most unexpected snack attacks and sharing needs.
+                </p>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     )

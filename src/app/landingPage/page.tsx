@@ -12,15 +12,16 @@ export default function LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
+    <>
     <div className="bg-white">
-      <header className="absolute inset-x-0 top-0 z-50">
+      <header className="bg-black inset-x-0 top-0 z-50">
         <div className="mx-auto max-w-7xl">
-          <div className="px-6 pt-6 lg:max-w-2xl lg:pl-8 lg:pr-0">
+          <div className="px-6 pt-2 pb-2 lg:max-w-2xl lg:pl-8 lg:pr-0">
             <nav className="flex items-center justify-between lg:justify-start" aria-label="Global">
               <UserButton/>
               <button
                 type="button"
-                className="-m-2.5 rounded-md p-2.5 text-gray-700 lg:hidden"
+                className="-m-2.5 rounded-md p-2.5 text-white lg:hidden"
                 onClick={() => setMobileMenuOpen(true)}
               >
                 <span className="sr-only">Open main menu</span>
@@ -28,7 +29,7 @@ export default function LandingPage() {
               </button>
               <div className="hidden lg:ml-12 lg:flex lg:gap-x-14">
                 {navigation.map((item) => (
-                  <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900">
+                  <a key={item.name} href={item.href} className="text-sm tracking-widest text-white">
                     {item.name}
                   </a>
                 ))}
@@ -77,11 +78,11 @@ export default function LandingPage() {
               viewBox="0 0 100 100"
               preserveAspectRatio="none"
               aria-hidden="true"
-            >
+              >
               <polygon points="0,0 90,0 50,100 0,100" />
             </svg>
 
-            <div className="relative px-6 py-32 sm:py-40 lg:px-8 lg:py-56 lg:pr-0">
+            <div className="relative px-6 py-32 sm:py-62 lg:px-8 lg:py-56 lg:pr-0">
               <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
                 <div className="hidden sm:mb-10 sm:flex">
                   <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-500 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
@@ -92,7 +93,7 @@ export default function LandingPage() {
                     </a>
                   </div>
                 </div>
-                <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+                <h1 className="text-5xl font-bold tracking-wide text-gray-900 sm:text-6xl">
                   Super Showdown
                 </h1>
                 <p className="mt-6 text-lg leading-8 text-gray-600">
@@ -116,12 +117,13 @@ export default function LandingPage() {
         </div>
         <div className="bg-gray-50 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
           <img
-            className="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full"
+            className="aspect-[3/2] lg:aspect-auto lg:h-full lg:w-full"
             src="./vs.jpg"
             alt=""
           />
         </div>
       </div>
     </div>
+            </>
   )
 }
