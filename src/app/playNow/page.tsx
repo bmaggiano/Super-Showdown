@@ -12,6 +12,7 @@ import {
 } from "phosphor-react";
 import styles from "../page.module.css";
 import { UserButton } from "@clerk/clerk-react";
+import PlayHead from "../playHead/page";
 
 export default function PlayGame() {
   const [responseText, setResponseText] = useState("");
@@ -121,17 +122,105 @@ export default function PlayGame() {
       <UserButton />
       </div>
       {/* <CurrentUserInfo/> */}
+      <PlayHead/>
 
-      <main className={styles.main}>
-        <h1>
-          Super <span>Showdown</span>
-        </h1>
-        <br />
-      </main>
+      <div>
+        <div className={styles.firstAction}>
+          {!secondHero && (
+            <button onClick={(e) => handleSecondHero(e)}>Reveal your opponent</button>
+          )}
+          {userChoice && secondHero && (
+            <>
+              <div className={styles.whoWins}>
+                <button onClick={(e) => handleClick(e)}>
+                  Who would win between <span>{userChoice}</span> vs.{" "}
+                  <span>{secondHero?.name}</span>?
+                </button>
+              </div>
+              {responseText && (
+                <div className={styles.responseContainer}>
+                  <h4>{responseText}</h4>
+                </div>
+              )}
+            </>
+          )}
+        </div>
+        {secondHero && (
+          <div className={styles.characterCard}>
+            <div className={styles.cardHeader}>
+              <h3>{secondHero?.name}</h3>
+              <span>{secondHero?.biography["full-name"]}</span>
+            </div>
+            <br />
+            <img
+              className={styles.heroPic}
+              src={secondHero?.image.url}
+              alt={secondHero?.name}
+            />
+            {secondHero.powerstats.intelligence !== "null" ? (
+              <>
+                <div className={styles.characterData}>
+                  <div className={styles.powerStats}>
+                    <div className={styles.powerStatsGroup}>
+                      <p>
+                        <span className={styles.icon}>
+                          <Brain color="pink" weight="duotone" size={20} />
+                        </span>
+                        : {secondHero?.powerstats?.intelligence}
+                      </p>
+                      <p>
+                        {" "}
+                        <span className={styles.icon}>
+                          <Barbell color="white" weight="duotone" size={20} />
+                        </span>
+                        : {secondHero?.powerstats?.strength}
+                      </p>
+                      <p>
+                        <span className={styles.icon}>
+                          <Wind color="yellow" weight="fill" size={20} />
+                        </span>
+                        : {secondHero?.powerstats?.speed}
+                      </p>
+                    </div>
+                    <div className={styles.powerStatsGroup}>
+                      <p>
+                        <span className={styles.icon}>
+                          <BatteryFull
+                            color="green"
+                            weight="duotone"
+                            size={20}
+                          />
+                        </span>
+                        : {secondHero?.powerstats.power}
+                      </p>
+                      <p>
+                        <span className={styles.icon}>
+                          <Heart color="#AE2983" weight="fill" size={20} />
+                        </span>
+                        : {secondHero?.powerstats?.durability}
+                      </p>
+                      <p>
+                        <span className={styles.icon}>
+                          <HandFist color="white" weight="fill" size={20} />
+                        </span>
+                        : {secondHero?.powerstats?.combat}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <p>Powerstats not available</p>
+              </>
+            )}
+          </div>
+        )}
+      </div>
 
       <div className={styles.firstAction}>
         {firstHero.length === 0 && (
-          <button onClick={(e) => handleFirstHero(e)}>Superhero 1</button>
+          <button onClick={(e) => handleFirstHero(e)}>Populate your characters</button>
         )}
         {firstHero.length > 0 && (
           <>
@@ -222,99 +311,6 @@ export default function PlayGame() {
           ))}
       </section>
 
-      <div>
-        <div className={styles.firstAction}>
-          {!secondHero && (
-            <button onClick={(e) => handleSecondHero(e)}>Superhero 2</button>
-          )}
-          {userChoice && secondHero && (
-            <>
-              <div className={styles.whoWins}>
-                <button onClick={(e) => handleClick(e)}>
-                  Who would win between <span>{userChoice}</span> vs.{" "}
-                  <span>{secondHero?.name}</span>?
-                </button>
-              </div>
-              {responseText && (
-                <div className={styles.responseContainer}>
-                  <h4>{responseText}</h4>
-                </div>
-              )}
-            </>
-          )}
-        </div>
-        {secondHero && (
-          <div className={styles.characterCard}>
-            <div className={styles.cardHeader}>
-              <h3>{secondHero?.name}</h3>
-              <span>{secondHero?.biography["full-name"]}</span>
-            </div>
-            <br />
-            <img
-              className={styles.heroPic}
-              src={secondHero?.image.url}
-              alt={secondHero?.name}
-            />
-            {secondHero.powerstats.intelligence !== "null" ? (
-              <>
-                <div className={styles.characterData}>
-                  <div className={styles.powerStats}>
-                    <div className={styles.powerStatsGroup}>
-                      <p>
-                        <span className={styles.icon}>
-                          <Brain color="pink" weight="duotone" size={20} />
-                        </span>
-                        : {secondHero?.powerstats?.intelligence}
-                      </p>
-                      <p>
-                        {" "}
-                        <span className={styles.icon}>
-                          <Barbell color="white" weight="duotone" size={20} />
-                        </span>
-                        : {secondHero?.powerstats?.strength}
-                      </p>
-                      <p>
-                        <span className={styles.icon}>
-                          <Wind color="yellow" weight="fill" size={20} />
-                        </span>
-                        : {secondHero?.powerstats?.speed}
-                      </p>
-                    </div>
-                    <div className={styles.powerStatsGroup}>
-                      <p>
-                        <span className={styles.icon}>
-                          <BatteryFull
-                            color="green"
-                            weight="duotone"
-                            size={20}
-                          />
-                        </span>
-                        : {secondHero?.powerstats.power}
-                      </p>
-                      <p>
-                        <span className={styles.icon}>
-                          <Heart color="#AE2983" weight="fill" size={20} />
-                        </span>
-                        : {secondHero?.powerstats?.durability}
-                      </p>
-                      <p>
-                        <span className={styles.icon}>
-                          <HandFist color="white" weight="fill" size={20} />
-                        </span>
-                        : {secondHero?.powerstats?.combat}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </>
-            ) : (
-              <>
-                <p>Powerstats not available</p>
-              </>
-            )}
-          </div>
-        )}
-      </div>
     </>
   );
 }
