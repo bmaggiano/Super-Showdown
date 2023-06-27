@@ -15,8 +15,6 @@ const UsersPage = () => {
   const [loading, setLoading] = useState(true);
   const { isLoaded, isSignedIn, user } = useUser();
 
-  // console.log(user);
-
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -57,8 +55,8 @@ const UsersPage = () => {
   };
 
   const handleSaveScore = async () => {
-    const email = user?.primaryEmailAddress?.emailAddress;
     const score = newScore;
+    const email = user?.primaryEmailAddress?.emailAddress;
 
     try {
       const response = await fetch('/api/saveScore', {
