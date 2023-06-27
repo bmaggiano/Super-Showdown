@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 /* use this to style overall elements.. things that dont necessarily need a classname and will be global
 across the app */
 

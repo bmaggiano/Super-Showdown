@@ -12,6 +12,7 @@ import {
 } from "phosphor-react";
 import styles from "./page.module.css";
 import User from "./userButton/page";
+import { UserButton } from "@clerk/clerk-react";
 
 export default function PlayGame() {
   const [responseText, setResponseText] = useState("");
@@ -117,7 +118,9 @@ export default function PlayGame() {
         />
       </Head>
 
-      <User />
+      <div className="m-3">
+      <UserButton />
+      </div>
       {/* <CurrentUserInfo/> */}
 
       <main className={styles.main}>
