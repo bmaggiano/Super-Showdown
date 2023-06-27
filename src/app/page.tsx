@@ -13,7 +13,7 @@ import {
 import styles from "./page.module.css";
 import User from "./userButton/page";
 
-export default function Home() {
+export default function PlayGame() {
   const [responseText, setResponseText] = useState("");
   const [firstHero, setFirstHero] = useState<any>([]);
   const [userChoice, setUserChoice] = useState<any>("");
