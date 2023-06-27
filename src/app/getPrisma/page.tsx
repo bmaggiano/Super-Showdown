@@ -1,11 +1,14 @@
-"use client"
-import { useEffect, useState } from 'react';
-import { useUser } from '@clerk/clerk-react';
+"use client";
+import { useEffect, useState } from "react";
+import { useUser } from "@clerk/clerk-react";
 
 interface User {
   id: number;
   name: string;
   email: string;
+  primaryEmailAddress?: {
+    emailAddress: string;
+  };
   score?: number;
 }
 
@@ -13,20 +16,19 @@ const UsersPage = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [newScore, setNewScore] = useState(0);
   const [loading, setLoading] = useState(true);
-  const { isLoaded, isSignedIn, user } = useUser();
+  const { isSignedIn, user } = useUser();
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('/api/users');
+        const response = await fetch("/api/users");
         const allUsers = await response.json();
         setUsers(allUsers);
         setLoading(false);
       } catch (error) {
-        console.error('Error retrieving users:', error);
+        console.error("Error retrieving users:", error);
       }
     };
-
     fetchUsers();
   });
 
@@ -36,21 +38,21 @@ const UsersPage = () => {
     const score = 0;
 
     try {
-      const response = await fetch('/api/saveName', {
-        method: 'POST',
+      const response = await fetch("/api/saveName", {
+        method: "POST",
         body: JSON.stringify({ name, email, score }),
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       });
 
       if (response.ok) {
-        console.log('Name saved successfully');
+        console.log("Name saved successfully");
       } else {
-        console.error('Failed to save name');
+        console.error("Failed to save name");
       }
     } catch (error) {
-      console.error('Error saving name:', error);
+      console.error("Error saving name:", error);
     }
   };
 
@@ -59,23 +61,28 @@ const UsersPage = () => {
     const email = user?.primaryEmailAddress?.emailAddress;
 
     try {
-      const response = await fetch('/api/saveScore', {
-        method: 'POST',
+      const response = await fetch("/api/saveScore", {
+        method: "POST",
         body: JSON.stringify({ email, score }),
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       });
 
       if (response.ok) {
-        console.log('Score saved successfully');
+        console.log("Score saved successfully");
       } else {
-        console.error('Failed to save score');
+        console.error("Failed to save score");
       }
     } catch (error) {
-      console.error('Error saving score:', error);
+      console.error("Error saving score:", error);
     }
   };
+
+  // Check if user's email matches any email in the existing user list
+  const isUserInDatabase = users.some(
+    (existingUser) => existingUser.email === user?.primaryEmailAddress?.emailAddress
+  );
 
   return (
     <div>
@@ -97,11 +104,11 @@ const UsersPage = () => {
       <br />
       {newScore}
       <br />
+      {isSignedIn && !isUserInDatabase && (
+        <button onClick={handleSaveName}>Save Name</button>
+      )}
       {isSignedIn && (
-        <>
-          <button onClick={handleSaveName}>Save Name</button>
-          <button onClick={handleSaveScore}>Save Score</button>
-        </>
+        <button onClick={handleSaveScore}>Save Score</button>
       )}
     </div>
   );
