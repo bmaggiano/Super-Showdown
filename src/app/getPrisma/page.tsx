@@ -107,7 +107,7 @@ const UsersPage = () => {
               <a href="#" className="focus:outline-none">
                 <span className="absolute inset-0" aria-hidden="true" />
                 <p className="text-sm font-medium text-gray-900">{user.name}</p>
-                <p className="truncate text-sm text-gray-500">{user.score}</p>
+                <p className="truncate text-sm text-gray-500">Score: {user.score}</p>
               </a>
             </div>
           </div>
