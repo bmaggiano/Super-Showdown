@@ -1,13 +1,69 @@
 "use client"
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Nav from '../navbar/page'
 import Head from 'next/head'
-
+import { useUser } from '@clerk/clerk-react'
 
 
 
 export default function LandingPage() {
+const { user } = useUser();
+const [userEmail, setUserEmail] = useState(null)
 
+const email = user?.primaryEmailAddress?.emailAddress;
+
+const fetchUser = async () => {
+  try {
+    const response = await fetch("/api/currentUser", {
+      method: "POST",
+      body: JSON.stringify({ email }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const user = await response.json()
+    // console.log(user.score)
+    if(response.ok){
+      setUserEmail(user.email)
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+useEffect(() => {
+  fetchUser()
+  console.log(userEmail)
+  console.log(email)
+})
+
+  const handleSaveName = async () => {
+    const name = user?.fullName;
+    const email = user?.primaryEmailAddress?.emailAddress;
+    const score = 0;
+    const image = user?.imageUrl
+  
+    try {
+      const response = await fetch("/api/saveName", {
+        method: "POST",
+        body: JSON.stringify({ name, email, score, image }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      if (response.ok) {
+        console.log("Name saved successfully");
+        window.location.href = "/playNow";
+      } else {
+        console.error("Failed to save name");
+        window.location.href = "/playNow";
+      }
+    } catch (error) {
+      console.error("Error saving name:", error);
+    }
+  };
+  
   return (
     <>
             <Head>
@@ -56,12 +112,19 @@ export default function LandingPage() {
                   and claim the number one spot on the leaderboard!
                 </p>
                 <div className="mt-10 flex items-center gap-x-6">
-                  <a
-                    href="/playNow"
+                  <button
+                    onClick={() => {
+                    //   if(email === userEmail){
+                    //     handleSaveName()
+                    //   } else {
+                    //     window.location.href = "/playNow";
+                    //   }
+                    handleSaveName()
+                    }}
                     className="rounded-md bg-slate-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-slate-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   >
                     Play Now
-                  </a>
+                  </button>
                   <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
                     Learn more <span aria-hidden="true">→</span>
                   </a>

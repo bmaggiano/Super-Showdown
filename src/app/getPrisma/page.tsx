@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/clerk-react";
+import Nav from "../navbar/page";
 
 interface User {
   id: number;
@@ -10,6 +11,7 @@ interface User {
     emailAddress: string;
   };
   score?: number;
+  image: string;
 }
 
 const UsersPage = () => {
@@ -36,11 +38,12 @@ const UsersPage = () => {
     const name = user?.fullName;
     const email = user?.primaryEmailAddress?.emailAddress;
     const score = 0;
+    const image = user?.imageUrl
 
     try {
       const response = await fetch("/api/saveName", {
         method: "POST",
-        body: JSON.stringify({ name, email, score }),
+        body: JSON.stringify({ name, email, score, image }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -84,21 +87,9 @@ const UsersPage = () => {
     (existingUser) => existingUser.email === user?.primaryEmailAddress?.emailAddress
   );
 
-  const people = [
-{
-name: 'Leslie Alexander',
-email: 'leslie.alexander@example.com',
-role: 'Co-Founder / CEO',
-imageUrl:
-  'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-},
-// More people...
-]
   return (
     <div>
-
-
-
+      <Nav/>
       <h1 className="text-center">Users Page</h1>
       {loading ? (
         <p>Loading...</p>
@@ -110,7 +101,7 @@ imageUrl:
             className="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400"
           >
             <div className="flex-shrink-0">
-              <img className="h-10 w-10 rounded-full" alt="" />
+              <img className="h-10 w-10 rounded-full" src={user.image} alt="" />
             </div>
             <div className="min-w-0 flex-1">
               <a href="#" className="focus:outline-none">
@@ -123,7 +114,7 @@ imageUrl:
         ))}
       </div>
       )}
-      <button onClick={() => setNewScore(newScore + 1)}>Increase Score</button>
+      {/* <button onClick={() => setNewScore(newScore + 1)}>Increase Score</button>
       <br />
       {newScore}
       <br />
@@ -132,7 +123,7 @@ imageUrl:
       )}
       {isSignedIn && (
         <button onClick={handleSaveScore}>Save Score</button>
-      )}
+      )} */}
     </div>
   );
 };
