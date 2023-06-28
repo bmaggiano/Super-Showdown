@@ -45,26 +45,27 @@ export default function PlayGame() {
     };
   }
 
-  useEffect(() => {
-    const email = user?.primaryEmailAddress?.emailAddress;
-    const fetchUserScore = async () => {
-      try {
-        const response = await fetch("/api/currentUser", {
-          method: "POST",
-          body: JSON.stringify({ email }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const user = await response.json()
-        console.log(user.score)
-        if(response.ok){
-          setUserScore(user.score)
-        }
-      } catch (error) {
-        console.error(error)
+  const email = user?.primaryEmailAddress?.emailAddress;
+  const fetchUserScore = async () => {
+    try {
+      const response = await fetch("/api/currentUser", {
+        method: "POST",
+        body: JSON.stringify({ email }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const user = await response.json()
+      console.log(user.score)
+      if(response.ok){
+        setUserScore(user.score)
       }
+    } catch (error) {
+      console.error(error)
     }
+  }
+
+  useEffect(() => {
     fetchUserScore()
   })
 
@@ -186,7 +187,16 @@ export default function PlayGame() {
     } else {
       resetUserScore()
     }
+    fetchUserScore()
+
   };
+
+  const nextButton = () => {
+    setFirstHero([]);
+    setUserChoice("");
+    setSecondHero(null);
+    setResponseText("");
+  }
 
   return (
     <>
@@ -227,13 +237,15 @@ export default function PlayGame() {
           )}
           {responseText && (
             <>
-            <button>Next</button>
+            <button onClick={() => nextButton()}>Next</button>
             <div className={styles.responseContainer}>
               <h4>{responseText}</h4>
             </div>
             </>
           )}
         </div>
+        
+        <div className="flex flex-row">  
         {secondHero && (
           <div className={styles.characterCard}>
             <div className={styles.cardHeader}>
@@ -278,7 +290,7 @@ export default function PlayGame() {
                             color="green"
                             weight="duotone"
                             size={20}
-                          />
+                            />
                         </span>
                         : {secondHero?.powerstats.power}
                       </p>
@@ -305,21 +317,7 @@ export default function PlayGame() {
             )}
           </div>
         )}
-      </div>
-
-      <div className={styles.firstAction}>
-        {firstHero.length === 0 && (
-          <button onClick={(e) => handleFirstHero(e)}>Populate your characters</button>
-        )}
-        {firstHero.length > 0 && (
-          <>
-            <h2>Choose your character!</h2>
-            <span>you only get one shot at this!</span>
-          </>
-        )}
-      </div>
-      <section className={styles.randomSelector}>
-        {firstHero &&
+                {firstHero &&
           firstHero.map((hero: Hero) => (
             <div key={hero?.id} className={styles.characterCard}>
               <div className={styles.cardHeader}>
@@ -385,20 +383,36 @@ export default function PlayGame() {
                 </>
               ) : (
                 <>
-                  <p>Powerstats not available</p>
+                  <p className="text-center py-11 font-medium">Powerstats not available</p>
                 </>
               )}
               {!userChoice && (
+                <div className="flex justify-center">
                 <button
                   className="userPick"
                   onClick={() => setUserChoice(hero?.name)}
                 >
                   Choose: {hero?.name}
                 </button>
+                </div>
               )}
             </div>
           ))}
-      </section>
+      </div>
+        </div>
+
+      <div className={styles.firstAction}>
+        {firstHero.length === 0 && (
+          <button onClick={(e) => handleFirstHero(e)}>Populate your characters</button>
+          )}
+        {firstHero.length > 0 && (
+          <>
+            <h2>Choose your character!</h2>
+            <span>you only get one shot at this!</span>
+          </>
+        )}
+      </div>
+
 
     </>
   );

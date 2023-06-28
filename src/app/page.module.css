@@ -42,6 +42,7 @@
   font-weight: 700;
   font-size: 1rem;
   background-color: rgba(211, 211, 211, 0.603);
+  
 }
 
 .characterData {
@@ -79,11 +80,11 @@
 
 .powerStats {
   display: flex;
-  margin: 1rem;
+  /* margin: 1rem; */
 }
 
 .powerStatsGroup {
-  padding-inline: 1rem; /* Adjust the margin as needed to create space between the divs */
+  /* padding-inline: 1rem; Adjust the margin as needed to create space between the divs */
 }
 
 
@@ -124,7 +125,7 @@
   border: .5rem solid black;
   margin: 0 auto;
   border-radius: 1rem;
-  width: 20rem;
+  width: 15rem;
   background-image: url(../../public/space.jpg);
   background-size: cover;
   color: white;
@@ -142,7 +143,7 @@
 .cardHeader h3 {
   font-family: 'Comic Neue', sans-serif;
   font-weight: 700;
-  font-size: 1.5rem;
+  /* font-size: 1.5rem; */
 }
 
 .cardHeader span {
@@ -152,9 +153,10 @@
 }
 
 .heroPic {
-  width: 20rem;
-  height: 20rem;
+  width: 15rem;
+  height: 15rem;
   object-fit: cover;
+  margin: 0 auto;
 }
 
 .icon {
