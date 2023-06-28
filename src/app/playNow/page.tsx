@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import {
   Heart,
@@ -13,12 +13,17 @@ import {
 import styles from "../page.module.css";
 import { UserButton } from "@clerk/clerk-react";
 import PlayHead from "../playHead/page";
+import { useUser } from "@clerk/clerk-react";
+
 
 export default function PlayGame() {
+  const [userScore, setUserScore] = useState(0)
   const [responseText, setResponseText] = useState("");
   const [firstHero, setFirstHero] = useState<any>([]);
   const [userChoice, setUserChoice] = useState<any>("");
   const [secondHero, setSecondHero] = useState<any>(null);
+  const { isSignedIn, user } = useUser();
+
 
   // define the type of data that gets brought in to prevent future errors
   interface Hero {
@@ -39,6 +44,76 @@ export default function PlayGame() {
       "full-name": string;
     };
   }
+
+  useEffect(() => {
+    const email = user?.primaryEmailAddress?.emailAddress;
+    const fetchUserScore = async () => {
+      try {
+        const response = await fetch("/api/currentUser", {
+          method: "POST",
+          body: JSON.stringify({ email }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const user = await response.json()
+        console.log(user.score)
+        if(response.ok){
+          setUserScore(user.score)
+        }
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    fetchUserScore()
+  })
+
+  const increaseUserScore = async () => {
+    const score = userScore + 1;
+    const email = user?.primaryEmailAddress?.emailAddress;
+
+    try {
+      const response = await fetch("/api/saveScore", {
+        method: "POST",
+        body: JSON.stringify({ email, score }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        console.log("Score saved successfully");
+      } else {
+        console.error("Failed to save score");
+      }
+    } catch (error) {
+      console.error("Error saving score:", error);
+    }
+  }
+
+  const resetUserScore = async () => {
+    const score = 0;
+    const email = user?.primaryEmailAddress?.emailAddress;
+
+    try {
+      const response = await fetch("/api/saveScore", {
+        method: "POST",
+        body: JSON.stringify({ email, score }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        console.log("Score saved successfully");
+      } else {
+        console.error("Failed to save score");
+      }
+    } catch (error) {
+      console.error("Error saving score:", error);
+    }
+  }
+
 
   const handleFirstHero = async (e: any) => {
     e.preventDefault();
@@ -80,7 +155,7 @@ export default function PlayGame() {
   const handleClick = async (e: any) => {
     e.preventDefault();
 
-    const prompt = `Without any explanation, who would win between ${userChoice} vs. ${secondHero?.name}? Then give a one sentence explanation of how this character would win.`;
+    const prompt = `Without any explanation, who would win between ${userChoice} vs. ${secondHero?.name}? Then give a one sentence explanation of how this character would win. Please return the data as an object with a format like {"winner": "character", "reason":"reason"}`;
 
     const response = await fetch("/api/generate", {
       method: "POST",
@@ -100,7 +175,17 @@ export default function PlayGame() {
 
     const responseText = data.response; // Access the response value from the JSON object
 
-    setResponseText(responseText);
+    const parsedRes = JSON.parse(responseText)
+    console.log(parsedRes)
+
+    // console.log(data.response[1])
+    setResponseText(`Winner: ${parsedRes.winner}, ${parsedRes.reason}`);
+
+    if(parsedRes.winner === userChoice){
+      increaseUserScore()
+    } else {
+      resetUserScore()
+    }
   };
 
   return (
@@ -126,10 +211,11 @@ export default function PlayGame() {
 
       <div>
         <div className={styles.firstAction}>
+        <p>Score: {userScore}</p>
           {!secondHero && (
             <button onClick={(e) => handleSecondHero(e)}>Reveal your opponent</button>
           )}
-          {userChoice && secondHero && (
+          {userChoice && secondHero && !responseText && (
             <>
               <div className={styles.whoWins}>
                 <button onClick={(e) => handleClick(e)}>
@@ -137,11 +223,14 @@ export default function PlayGame() {
                   <span>{secondHero?.name}</span>?
                 </button>
               </div>
-              {responseText && (
-                <div className={styles.responseContainer}>
-                  <h4>{responseText}</h4>
-                </div>
-              )}
+            </>
+          )}
+          {responseText && (
+            <>
+            <button>Next</button>
+            <div className={styles.responseContainer}>
+              <h4>{responseText}</h4>
+            </div>
             </>
           )}
         </div>

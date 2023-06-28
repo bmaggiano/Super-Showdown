@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { UserButton } from '@clerk/clerk-react'
+import Head from 'next/head'
+
 
 const navigation = [
   { name: 'Leaderboard', href: '/getPrisma' },
@@ -13,6 +15,18 @@ export default function LandingPage() {
 
   return (
     <>
+            <Head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossOrigin="true"
+      />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Comic+Neue:ital,wght@0,400;1,400;1,700&display=swap"
+      rel="stylesheet"
+      />
+    </Head>
     <div className="bg-white">
       <header className="bg-black inset-x-0 top-0 z-50">
         <div className="mx-auto max-w-7xl">
