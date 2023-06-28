@@ -11,7 +11,6 @@ import {
   Wind,
 } from "phosphor-react";
 import styles from "../page.module.css";
-import { UserButton } from "@clerk/clerk-react";
 import PlayHead from "../playHead/page";
 import { useUser } from "@clerk/clerk-react";
 import Nav from "../navbar/page";
