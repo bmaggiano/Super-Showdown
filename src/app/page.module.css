@@ -30,6 +30,7 @@
   border: .1rem solid black;
   border-radius: .5rem;
   padding: .5rem;
+  
 }
 
 .characterCard button {
@@ -165,8 +166,5 @@
 @media screen and (max-width: 850px) {
   .randomSelector {
     flex-direction: column;
-  }
-  .characterCard {
-    margin: 1rem;
   }
 }
