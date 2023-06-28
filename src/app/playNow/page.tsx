@@ -413,6 +413,14 @@ export default function PlayGame() {
         )}
       </div>
 
+      <div className="fixed bottom-0 left-0 w-full z-10">
+  <div className="relative">
+    <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-white" />
+    <img src="./playbanner.jpg" alt="" className="h-96 w-full object-center" />
+  </div>
+</div>
+
+
 
     </>
   );
