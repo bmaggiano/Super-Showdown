@@ -14,6 +14,7 @@ import styles from "../page.module.css";
 import { UserButton } from "@clerk/clerk-react";
 import PlayHead from "../playHead/page";
 import { useUser } from "@clerk/clerk-react";
+import Nav from "../navbar/page";
 
 
 export default function PlayGame() {
@@ -188,7 +189,6 @@ export default function PlayGame() {
       resetUserScore()
     }
     fetchUserScore()
-
   };
 
   const nextButton = () => {
@@ -197,6 +197,10 @@ export default function PlayGame() {
     setSecondHero(null);
     setResponseText("");
   }
+
+  const navigation = [
+    { name: 'Leaderboard', href: '/getPrisma' },
+  ]
 
   return (
     <>
@@ -212,16 +216,14 @@ export default function PlayGame() {
           rel="stylesheet"
         />
       </Head>
-
-      <div className="m-3">
-      <UserButton />
-      </div>
-      {/* <CurrentUserInfo/> */}
+      <Nav/>
       <PlayHead/>
 
       <div>
+        <div className="flex justify-center">
+        <p className="text-xl font-bold">{user?.firstName}'s score: {userScore}</p>
+        </div>
         <div className={styles.firstAction}>
-        <p>Score: {userScore}</p>
           {!secondHero && (
             <button onClick={(e) => handleSecondHero(e)}>Reveal your opponent</button>
           )}
@@ -243,6 +245,17 @@ export default function PlayGame() {
             </div>
             </>
           )}
+
+        {firstHero.length === 0 && (
+          <button onClick={(e) => handleFirstHero(e)}>Populate your characters</button>
+          )}
+        {firstHero.length > 0 && !userChoice && (
+          <>
+            <h2>Choose your character!<span> You only get one shot at this!</span></h2>
+            
+          </>
+        )}
+        
         </div>
         
         <div className="flex flex-row">  
@@ -400,26 +413,6 @@ export default function PlayGame() {
           ))}
       </div>
         </div>
-
-      <div className={styles.firstAction}>
-        {firstHero.length === 0 && (
-          <button onClick={(e) => handleFirstHero(e)}>Populate your characters</button>
-          )}
-        {firstHero.length > 0 && (
-          <>
-            <h2>Choose your character!</h2>
-            <span>you only get one shot at this!</span>
-          </>
-        )}
-      </div>
-
-      <div className="fixed bottom-0 left-0 w-full z-10">
-  <div className="relative">
-    <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-white" />
-    <img src="./playbanner.jpg" alt="" className="h-96 w-full object-center" />
-  </div>
-</div>
-
 
 
     </>

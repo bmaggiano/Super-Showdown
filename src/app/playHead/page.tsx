@@ -25,10 +25,6 @@ const features = [
         <div className="relative mx-auto -mt-12 max-w-7xl px-4 sm:px-6 sm:pb-4 lg:px-8">
           <div className="mx-auto max-w-2xl text-center lg:max-w-4xl">
             <h1 className="text-4xl font-bold tracking-wide text-gray-900 sm:text-5xl">Let's get ready to rumble!</h1>
-            <p className="mt-4 text-gray-500">
-              Organize is a system to keep your desk tidy and photo-worthy all day long. Procrastinate your work while you
-              meticulously arrange items into dedicated trays.
-            </p>
           </div>
   
         </div>
