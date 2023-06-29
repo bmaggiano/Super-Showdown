@@ -6,7 +6,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
 
-  const heroArr = []
+  const heroArr: any[] = []
   
   try {
     
@@ -25,7 +25,8 @@ export default async function handler(
       if (response.ok) {
         const data = await response.json();
 
-        if (data.powerstats.intelligence !== null && data.image.url !== null) {
+        if (data.powerstats.intelligence !== null && data.image.url !== null
+          && !heroArr.some((hero) => hero.id === data.id)) {
           heroArr.push(data);
         }
       }
