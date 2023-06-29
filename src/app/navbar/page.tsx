@@ -8,7 +8,7 @@ import { useState } from 'react'
 const navigation = [
     { name: 'SuperShowdown', href: '/'},
   { name: 'Leaderboard', href: '/allUsers' },
-  { name: 'Play Now', href: '/playNow' },
+  // { name: 'Play Now', href: '/playNow' },
 ]
 
 export default function Nav() {

@@ -13,6 +13,7 @@ const [userEmail, setUserEmail] = useState(null)
 const email = user?.primaryEmailAddress?.emailAddress;
 
 const fetchUser = async () => {
+  
   try {
     const response = await fetch("/api/currentUser", {
       method: "POST",
@@ -22,7 +23,6 @@ const fetchUser = async () => {
       },
     });
     const user = await response.json()
-    // console.log(user.score)
     if(response.ok){
       setUserEmail(user.email)
     }
@@ -33,8 +33,6 @@ const fetchUser = async () => {
 
 useEffect(() => {
   fetchUser()
-  console.log(userEmail)
-  console.log(email)
 })
 
   const handleSaveName = async () => {
@@ -71,7 +69,6 @@ useEffect(() => {
     <link
       rel="preconnect"
       href="https://fonts.gstatic.com"
-      crossOrigin="true"
       />
     <link
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Comic+Neue:ital,wght@0,400;1,400;1,700&display=swap"

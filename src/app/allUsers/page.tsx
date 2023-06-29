@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/clerk-react";
 import Nav from "../navbar/page";
+import LeaderboardHead from "../leaderboardHead/page";
 
 interface User {
   id: number;
@@ -41,7 +42,6 @@ const UsersPage = () => {
         },
       });
       const user = await response.json();
-      console.log(user.score);
       if (response.ok) {
       }
     } catch (error) {
@@ -52,7 +52,7 @@ const UsersPage = () => {
   useEffect(() => {
     fetchUsers();
     fetchCurrentUser();
-  });
+  }, []);
 
   const handleDeleteAccount = async () => {
     try {
@@ -77,7 +77,7 @@ const UsersPage = () => {
   return (
     <div>
       <Nav />
-      <h1 className="text-center">Users Page</h1>
+      <LeaderboardHead/>
       {loading ? (
         <p>Loading...</p>
       ) : (
