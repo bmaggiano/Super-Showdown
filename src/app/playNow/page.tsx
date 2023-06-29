@@ -18,6 +18,7 @@ import Nav from "../navbar/page";
 
 export default function PlayGame() {
   const [userScore, setUserScore] = useState(0)
+  const [result, setResult] = useState("")
   const [responseText, setResponseText] = useState("");
   const [firstHero, setFirstHero] = useState<any>([]);
   const [userChoice, setUserChoice] = useState<any>("");
@@ -185,8 +186,10 @@ export default function PlayGame() {
 
     if(parsedRes.winner === userChoice){
       increaseUserScore()
+      setResult("win")
     } else {
       resetUserScore()
+      setResult("lose")
     }
     fetchUserScore()
   };
@@ -197,10 +200,6 @@ export default function PlayGame() {
     setSecondHero(null);
     setResponseText("");
   }
-
-  const navigation = [
-    { name: 'Leaderboard', href: '/getPrisma' },
-  ]
 
   return (
     <>
@@ -239,9 +238,20 @@ export default function PlayGame() {
           )}
           {responseText && (
             <>
-            <button onClick={() => nextButton()}>Next</button>
+            <div className="flex-col text-center">
+              {result === "win" ? (
+
+                <div>
+            <button className="bg-green-500 text-white" onClick={() => nextButton()}>You win! Next</button>
+              </div>
+                ) : (
+                  <div>
+                  <button className="bg-red-500 text-white" onClick={() => nextButton()}>You lose! Next</button>
+                    </div>
+                )}
             <div className={styles.responseContainer}>
               <h4>{responseText}</h4>
+            </div>
             </div>
             </>
           )}
