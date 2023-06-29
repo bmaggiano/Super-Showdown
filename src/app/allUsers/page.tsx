@@ -17,10 +17,15 @@ interface User {
 
 const UsersPage = () => {
   const [users, setUsers] = useState<User[]>([]);
+  const [currentUser, setCurrentUser] = useState<User>([])
   const [loading, setLoading] = useState(true);
   const { isSignedIn, user } = useUser();
   const email = user?.primaryEmailAddress?.emailAddress;
 
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+  
   const fetchUsers = async () => {
     try {
       const response = await fetch("/api/users");
@@ -31,28 +36,6 @@ const UsersPage = () => {
       console.error("Error retrieving users:", error);
     }
   };
-
-  const fetchCurrentUser = async () => {
-    try {
-      const response = await fetch("/api/currentUser", {
-        method: "POST",
-        body: JSON.stringify({ email }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const user = await response.json();
-      if (response.ok) {
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchUsers();
-    fetchCurrentUser();
-  }, []);
 
   const handleDeleteAccount = async () => {
     try {
@@ -66,6 +49,8 @@ const UsersPage = () => {
 
       if (response.ok) {
         console.log("Account successfully deleted");
+        setUsers(users.filter(user => user.email !== email));
+
       } else {
         console.error("Failed to delete account");
       }
