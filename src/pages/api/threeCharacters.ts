@@ -24,7 +24,10 @@ export default async function handler(
   
       if (response.ok) {
         const data = await response.json();
-        heroArr.push(data)
+
+        if (data.powerstats.intelligence !== null && data.image.url !== null) {
+          heroArr.push(data);
+        }
       }
       else {
         res.status(response.status).json({ error: 'Request failed' });
