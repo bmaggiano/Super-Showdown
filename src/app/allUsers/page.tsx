@@ -17,7 +17,6 @@ interface User {
 
 const UsersPage = () => {
   const [users, setUsers] = useState<User[]>([]);
-  const [currentUser, setCurrentUser] = useState<User>([])
   const [loading, setLoading] = useState(true);
   const { isSignedIn, user } = useUser();
   const email = user?.primaryEmailAddress?.emailAddress;
