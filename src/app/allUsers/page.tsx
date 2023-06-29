@@ -82,6 +82,7 @@ const UsersPage = () => {
               <div className="min-w-0 flex-1">
                 <span className="absolute" aria-hidden="true" />
                 <p className="text-sm font-medium text-gray-900">{user.name}</p>
+                <p className="text-sm text-gray-900">{user.email}</p>
                 <p className="truncate text-sm text-gray-500">
                   Score: {user.score}
                 </p>
