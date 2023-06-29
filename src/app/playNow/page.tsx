@@ -220,18 +220,18 @@ export default function PlayGame() {
 
       <div className="mt-20">
         <div className="flex justify-center">
-        <p className="text-xl font-bold">{user?.firstName}'s score: {userScore}</p>
+        <p className="text-xl font-bold font-mono">{user?.firstName}'s score: {userScore}</p>
         </div>
         <div className={styles.firstAction}>
           {!secondHero && (
-            <button onClick={(e) => handleSecondHero(e)}>Reveal your opponent</button>
+            <button className="font-mono drop-shadow-xl text-lg bg-black rounded-xl text-red-500 font-bold p-4 hover:uppercase hover:text-white" onClick={(e) => handleSecondHero(e)}>Reveal your opponent</button>
           )}
           {userChoice && secondHero && !responseText && (
             <>
               <div className={styles.whoWins}>
-                <button onClick={(e) => handleClick(e)}>
-                  Who would win between <span>{userChoice}</span> vs.{" "}
-                  <span>{secondHero?.name}</span>?
+                <button className="bg-black border border-gray-200 rounded-xl p-3 text-white" onClick={(e) => handleClick(e)}>
+                  Who would win between <span className="text-green-500">{userChoice}</span> vs.{" "}
+                  <span className="text-red-500">{secondHero?.name}</span>?
                 </button>
               </div>
             </>
@@ -242,11 +242,11 @@ export default function PlayGame() {
               {result === "win" ? (
 
                 <div>
-            <button className="bg-green-500 text-white" onClick={() => nextButton()}>You win! Next</button>
+            <button className="font-mono font-bold border border-black rounded-xl cursor-pointer p-2 bg-green-500 text-white" onClick={() => nextButton()}>You win! Next</button>
               </div>
                 ) : (
                   <div>
-                  <button className="bg-red-500 text-white" onClick={() => nextButton()}>You lose! Next</button>
+                  <button className="font-mono font-bold border border-black rounded-xl cursor-pointer p-2 bg-red-500 text-white" onClick={() => nextButton()}>You lose! Next</button>
                     </div>
                 )}
             <div className={styles.responseContainer}>
@@ -256,13 +256,12 @@ export default function PlayGame() {
             </>
           )}
 
-        {firstHero.length === 0 && (
-          <button onClick={(e) => handleFirstHero(e)}>Populate your characters</button>
+        {secondHero && firstHero.length === 0 && (
+          <button className="font-mono drop-shadow-xl text-lg bg-black rounded-xl text-green-500 font-bold p-4 hover:uppercase hover:text-white" onClick={(e) => handleFirstHero(e)}>Populate your characters</button>
           )}
         {firstHero.length > 0 && !userChoice && (
           <>
-            <h2>Choose your character!<span> You only get one shot at this!</span></h2>
-            
+            <h2 className="text-xl font-sans font-semibold">Choose your character!<span> You only get one shot at this!</span></h2>
           </>
         )}
         
@@ -272,7 +271,7 @@ export default function PlayGame() {
         {secondHero && (
           <div className={styles.characterCard}>
             <div className={styles.cardHeader}>
-              <h3>{secondHero?.name}</h3>
+              <h3 className="text-red-500">{secondHero?.name}</h3>
               <span>{secondHero?.biography["full-name"]}</span>
             </div>
             <br />
@@ -335,7 +334,7 @@ export default function PlayGame() {
               </>
             ) : (
               <>
-                <p>Powerstats not available</p>
+                <p className="text-center py-11 font-medium">Powerstats not available</p>
               </>
             )}
           </div>
@@ -344,7 +343,7 @@ export default function PlayGame() {
           firstHero.map((hero: Hero) => (
             <div key={hero?.id} className={styles.characterCard}>
               <div className={styles.cardHeader}>
-                <h3>{hero?.name}</h3>
+                <h3 className="text-green-500">{hero?.name}</h3>
                 <span>{hero?.biography["full-name"]}</span>
               </div>
               <br />
