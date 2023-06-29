@@ -218,7 +218,7 @@ export default function PlayGame() {
       <Nav/>
       <PlayHead/>
 
-      <div>
+      <div className="mt-20">
         <div className="flex justify-center">
         <p className="text-xl font-bold">{user?.firstName}'s score: {userScore}</p>
         </div>

@@ -8,7 +8,6 @@ import Footer from './footer/page'
 export default function Home() {
   return (
     <>
-
       <LandingPage/>
       <LandingPageHero/>
       <Footer/>

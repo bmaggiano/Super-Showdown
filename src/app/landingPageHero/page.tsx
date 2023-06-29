@@ -1,18 +1,5 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
-*/
-export default function Example() {
+
+export default function LandingPageHero() {
     return (
       <div className="bg-gray-300">
         <div className="mx-auto max-w-2xl px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8">
@@ -61,7 +48,7 @@ export default function Example() {
                   />
                 </div>
                 <p className="text-center mt-8 text-base text-gray-700">
-                  With the power of AI, our system will make the most educated guess of who would win, and present you 5 points for every victory. But if you lose, your score will be recorded and ultimately reset to 0!
+                  With the power of AI, our system will make the most educated guess of who would win, and present you 1 point for every victory. But if you lose, your score will be reset to 0!
                 </p>
               </div>
             </div>
