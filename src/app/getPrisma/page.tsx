@@ -16,7 +16,6 @@ interface User {
 
 const UsersPage = () => {
   const [users, setUsers] = useState<User[]>([]);
-  const [newScore, setNewScore] = useState(0);
   const [loading, setLoading] = useState(true);
   const { isSignedIn, user } = useUser();
 
@@ -34,30 +33,27 @@ const UsersPage = () => {
     fetchUsers();
   });
 
-  const handleSaveName = async () => {
-    const name = user?.fullName;
+  const handleDeleteAccount = async () => {
     const email = user?.primaryEmailAddress?.emailAddress;
-    const score = 0;
-    const image = user?.imageUrl
 
     try {
-      const response = await fetch("/api/saveName", {
+      const response = await fetch("/api/deleteAccount", {
         method: "POST",
-        body: JSON.stringify({ name, email, score, image }),
+        body: JSON.stringify({ email }),
         headers: {
           "Content-Type": "application/json",
         },
       });
 
       if (response.ok) {
-        console.log("Name saved successfully");
+        console.log("Account successfully deleted");
       } else {
-        console.error("Failed to save name");
+        console.error("Failed to delete account");
       }
     } catch (error) {
-      console.error("Error saving name:", error);
+      console.error("Error deleting account:", error);
     }
-  };
+  }
 
   return (
     <div>
@@ -70,17 +66,18 @@ const UsersPage = () => {
         {users.map((user) => (
           <div
             key={user.id}
-            className="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400"
+            className="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm"
           >
             <div className="flex-shrink-0">
               <img className="h-10 w-10 rounded-full" src={user.image} alt="" />
             </div>
             <div className="min-w-0 flex-1">
-              <a href="#" className="focus:outline-none">
-                <span className="absolute inset-0" aria-hidden="true" />
+                <span className="absolute" aria-hidden="true" />
                 <p className="text-sm font-medium text-gray-900">{user.name}</p>
                 <p className="truncate text-sm text-gray-500">Score: {user.score}</p>
-              </a>
+                {isSignedIn && 
+                <button onClick={() => handleDeleteAccount()} className="p-1 rounded-lg border border-black bg-red-600 text-white hover:bg-red-700">Delete Account</button>
+                 }
             </div>
           </div>
         ))}
