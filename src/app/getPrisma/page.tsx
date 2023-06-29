@@ -59,29 +59,6 @@ const UsersPage = () => {
     }
   };
 
-  const handleSaveScore = async () => {
-    const score = newScore;
-    const email = user?.primaryEmailAddress?.emailAddress;
-
-    try {
-      const response = await fetch("/api/saveScore", {
-        method: "POST",
-        body: JSON.stringify({ email, score }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (response.ok) {
-        console.log("Score saved successfully");
-      } else {
-        console.error("Failed to save score");
-      }
-    } catch (error) {
-      console.error("Error saving score:", error);
-    }
-  };
-
   return (
     <div>
       <Nav/>
