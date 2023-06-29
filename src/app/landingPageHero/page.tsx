@@ -31,7 +31,7 @@ export default function Example() {
               <div>
                 <div className="aspect-h-2 aspect-w-3 w-full overflow-hidden rounded-lg">
                   <img
-                    src="./opponent.png"
+                    src="./opponent.jpg"
                     alt="Front zipper pouch with included key ring."
                     className="h-48 w-full object-cover object-center"
                   />

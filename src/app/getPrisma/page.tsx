@@ -82,11 +82,6 @@ const UsersPage = () => {
     }
   };
 
-  // Check if user's email matches any email in the existing user list
-  const isUserInDatabase = users.some(
-    (existingUser) => existingUser.email === user?.primaryEmailAddress?.emailAddress
-  );
-
   return (
     <div>
       <Nav/>
@@ -114,16 +109,6 @@ const UsersPage = () => {
         ))}
       </div>
       )}
-      {/* <button onClick={() => setNewScore(newScore + 1)}>Increase Score</button>
-      <br />
-      {newScore}
-      <br />
-      {isSignedIn && !isUserInDatabase && (
-        <button onClick={handleSaveName}>Save Name</button>
-      )}
-      {isSignedIn && (
-        <button onClick={handleSaveScore}>Save Score</button>
-      )} */}
     </div>
   );
 };
