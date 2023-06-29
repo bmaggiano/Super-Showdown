@@ -46,6 +46,7 @@ export default function PlayGame() {
   }
 
   const email = user?.primaryEmailAddress?.emailAddress;
+
   const fetchUserScore = async () => {
     try {
       const response = await fetch("/api/currentUser", {
