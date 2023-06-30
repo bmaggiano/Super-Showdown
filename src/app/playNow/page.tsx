@@ -14,10 +14,12 @@ import styles from "../page.module.css";
 import PlayHead from "../playHead/page";
 import { useUser } from "@clerk/clerk-react";
 import Nav from "../navbar/page";
+import LoadingSpinner from "../loadingSpinner/page";
 
 
 export default function PlayGame() {
   const [userScore, setUserScore] = useState(0)
+  const [loading, setLoading] = useState(false)
   const [result, setResult] = useState("")
   const [responseText, setResponseText] = useState("");
   const [firstHero, setFirstHero] = useState<any>([]);
@@ -157,6 +159,7 @@ export default function PlayGame() {
 
   const handleClick = async (e: any) => {
     e.preventDefault();
+    setLoading(true)
 
     const prompt = `Without any explanation, who would win between ${userChoice} vs. ${secondHero?.name}? Then give a one sentence explanation of how this character would win. Please return the data as an object with a format like {"winner": "character", "reason":"reason"}`;
 
@@ -182,6 +185,7 @@ export default function PlayGame() {
     console.log(parsedRes)
 
     // console.log(data.response[1])
+    setLoading(false)
     setResponseText(`Winner: ${parsedRes.winner}, ${parsedRes.reason}`);
 
     if(parsedRes.winner === userChoice){
@@ -225,7 +229,7 @@ export default function PlayGame() {
           {!secondHero && (
             <button className="font-mono drop-shadow-xl text-lg bg-black rounded-xl text-red-500 font-bold p-4 hover:uppercase hover:text-white" onClick={(e) => handleSecondHero(e)}>Reveal your opponent</button>
           )}
-          {userChoice && secondHero && !responseText && (
+          {userChoice && secondHero && !responseText && !loading && (
             <>
               <div className={styles.whoWins}>
                 <button className="bg-black border border-gray-200 rounded-xl p-3 text-white" onClick={(e) => handleClick(e)}>
@@ -234,6 +238,12 @@ export default function PlayGame() {
                 </button>
               </div>
             </>
+          )}
+          {loading && (
+            <div className="flex flex-col items-center justify-center">
+              <p className="font-mono font-semibold">A massive battle is taking place!</p>
+          <LoadingSpinner/>
+            </div>
           )}
           {responseText && (
             <>
@@ -266,7 +276,7 @@ export default function PlayGame() {
         
         </div>
         
-        <div className="flex flex-row">  
+        <div className="flex flex-row max-[700px]:flex-col">  
         {secondHero && (
           <div className={styles.characterCard}>
             <div className={styles.cardHeader}>
@@ -411,7 +421,10 @@ export default function PlayGame() {
                 <div className="flex justify-center">
                 <button
                   className="userPick"
-                  onClick={() => setUserChoice(hero?.name)}
+                  onClick={() => {
+                    setUserChoice(hero?.name);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
                 >
                   Choose: {hero?.name}
                 </button>
