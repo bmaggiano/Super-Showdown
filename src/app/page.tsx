@@ -9,9 +9,12 @@ export default function Home() {
   return (
     <>
       <LandingPage/>
+
+      {/* section id for scroll event when clicking on learn more */}
       <section id="howToPlay">
       <LandingPageHero/>
       </section>
+
       <Footer/>
     </>
   )
