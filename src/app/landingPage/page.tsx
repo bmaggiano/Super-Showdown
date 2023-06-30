@@ -1,12 +1,17 @@
 "use client";
+
+// This was taken from Tailwind UI and modified, I like it's clean professional look as a landing header
+
 import Nav from "../navbar/page";
-import Head from "next/head";
 import { useUser } from "@clerk/clerk-react";
 
 export default function LandingPage() {
+  // useUser is from Clerk and is how we access user data
   const { user } = useUser();
 
+  // function to save a users data from the Clerk object
   const handleSaveName = async () => {
+    // sending this data to our controller
     const name = user?.fullName;
     const email = user?.primaryEmailAddress?.emailAddress;
     const score = 0;
@@ -23,9 +28,11 @@ export default function LandingPage() {
 
       if (response.ok) {
         console.log("Name saved successfully");
+        // after data is stored, send them to playNow
         window.location.href = "/playNow";
       } else {
-        console.error("Failed to save name");
+        console.error("User already exists");
+        // if the name is not saved, it means user is already in db, so they can proceed to playNow
         window.location.href = "/playNow";
       }
     } catch (error) {
@@ -35,14 +42,6 @@ export default function LandingPage() {
 
   return (
     <>
-      <Head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Comic+Neue:ital,wght@0,400;1,400;1,700&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
       <Nav />
 
       <div className="relative">
@@ -104,7 +103,7 @@ export default function LandingPage() {
           <img
             className="aspect-[3/2] lg:aspect-auto lg:h-full lg:w-full"
             src="./vs.jpg"
-            alt=""
+            alt="captian america fighting iron man"
           />
         </div>
       </div>
