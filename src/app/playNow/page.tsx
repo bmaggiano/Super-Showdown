@@ -460,7 +460,7 @@ export default function PlayGame() {
           ))}
       </div>
         </div>
-        <div className="absolute inset-x-0 bottom-0">
+        <div className="mt-10 absolute inset-x-0 lg:bottom-0">
     <Footer />
   </div>
     </>
