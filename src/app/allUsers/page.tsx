@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import { useUser } from "@clerk/clerk-react";
 import Nav from "../navbar/page";
 import LeaderboardHead from "../leaderboardHead/page";
+import LoadingSpinner from "../loadingSpinner/page";
 
+// in typescript, this defines the shape/structure and types of data that we expect to recieve
 interface User {
   id: number;
   name: string;
@@ -15,20 +17,25 @@ interface User {
   image: string;
 }
 
-const UsersPage = () => {
+export default function UsersPage() {
+  // Expects users array to be initally empty, but will eventually conform to our User interface
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const { isSignedIn, user } = useUser();
   const email = user?.primaryEmailAddress?.emailAddress;
 
+  // Will initiate fetchUsers function on component mount
   useEffect(() => {
     fetchUsers();
   }, []);
-  
+
+  // function to get all prisma users
   const fetchUsers = async () => {
     try {
+      // Will attempt to make fetch call to /api/users
       const response = await fetch("/api/users");
       const allUsers = await response.json();
+      // will set users array to data from api call to prisma
       setUsers(allUsers);
       setLoading(false);
     } catch (error) {
@@ -36,10 +43,13 @@ const UsersPage = () => {
     }
   };
 
+  // function to delete account
   const handleDeleteAccount = async () => {
     try {
+      // Will attempt to make fetch call to /api/deleteAccount
       const response = await fetch("/api/deleteAccount", {
         method: "POST",
+        // send the email object to our controller
         body: JSON.stringify({ email }),
         headers: {
           "Content-Type": "application/json",
@@ -48,8 +58,8 @@ const UsersPage = () => {
 
       if (response.ok) {
         console.log("Account successfully deleted");
-        setUsers(users.filter(user => user.email !== email));
-
+        // Will update the users array to remove the current signed in user
+        setUsers(users.filter((user) => user.email !== email));
       } else {
         console.error("Failed to delete account");
       }
@@ -61,11 +71,15 @@ const UsersPage = () => {
   return (
     <div>
       <Nav />
-      <LeaderboardHead/>
+      <LeaderboardHead />
+      {/* If data is loading, tell user with loading Spinner */}
       {loading ? (
-        <p>Loading...</p>
+        <div className="flex justify-center mt-20">
+          <LoadingSpinner />
+        </div>
       ) : (
         <div className="m-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {/* Map through users in our prisma db */}
           {users.map((user) => (
             <div
               key={user.id}
@@ -75,7 +89,7 @@ const UsersPage = () => {
                 <img
                   className="h-10 w-10 rounded-full"
                   src={user.image}
-                  alt=""
+                  alt={user.name}
                 />
               </div>
               <div className="min-w-0 flex-1">
@@ -85,23 +99,21 @@ const UsersPage = () => {
                 <p className="truncate text-sm text-gray-500">
                   Score: {user.score}
                 </p>
-                </div>
-                {isSignedIn && user.email === email && (
-                  <div>
+              </div>
+              {isSignedIn && user.email === email && (
+                <div>
                   <button
                     onClick={() => handleDeleteAccount()}
                     className="p-1 rounded-lg border border-black bg-red-600 text-white hover:bg-red-700"
-                    >
+                  >
                     Delete Account
                   </button>
-                    </div>
-                )}
+                </div>
+              )}
             </div>
           ))}
         </div>
       )}
     </div>
   );
-};
-
-export default UsersPage;
+}
