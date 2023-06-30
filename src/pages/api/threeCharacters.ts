@@ -37,7 +37,6 @@ export default async function handler(
         res.status(response.status).json({ error: 'Request failed' });
       }
     } 
-    console.log(heroArr)
     res.status(200).json(heroArr);
   } catch (error) {
     res.status(500).json({ error: 'An error occurred' });
