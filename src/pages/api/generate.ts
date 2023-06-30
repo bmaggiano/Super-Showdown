@@ -6,6 +6,8 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
+// API call using chat-gpt-3.5 turbo with a prompt from the request body
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -29,7 +31,8 @@ export default async function handler(
 
     const result = completion.data.choices[0].message?.content;
 
-    res.status(200).json({ response: result }); // Send the response using `res`
+    // Send the response using `res`
+    res.status(200).json({ response: result }); 
 
   } else {
     res.status(405).json({ message: 'Method Not Allowed' });

@@ -1,6 +1,8 @@
 // pages/api/superheroApi.ts
 import { NextApiRequest, NextApiResponse } from 'next';
 
+// API call to get random number between 1-731 and make call to the superhero api
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse

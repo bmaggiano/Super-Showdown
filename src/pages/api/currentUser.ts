@@ -3,15 +3,16 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
+// Api route to fetch the current user
+
 export default async function handler(  req: NextApiRequest,
   res: NextApiResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
+  // email of Clerk user, this should match with the email associated in our db
   const { email } = req.body;
-  console.log(req.body)
-  console.log(email)
 
   try {
     const user = await prisma.users.findUnique({
