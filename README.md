@@ -1,6 +1,6 @@
 # Super Showdown
 
-## Link to deployed app
+## Link to deployed app (coming soon)
 
 ![landing page](./public/landingpage.png)
 
