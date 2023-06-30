@@ -101,7 +101,7 @@ export default function LandingPage() {
         </div>
         <div className="bg-gray-50 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
           <img
-            className="aspect-[3/2] lg:aspect-auto lg:h-full lg:w-full"
+            className="aspect-[3/2] lg:aspect-auto lg:h-full"
             src="./vs.jpg"
             alt="captian america fighting iron man"
           />
