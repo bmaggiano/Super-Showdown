@@ -14,6 +14,7 @@ import PlayHead from "../playHead/page";
 import { useUser } from "@clerk/clerk-react";
 import Nav from "../navbar/page";
 import LoadingSpinner from "../loadingSpinner/page";
+import Footer from "../footer/page";
 
 
 export default function PlayGame() {
@@ -459,8 +460,9 @@ export default function PlayGame() {
           ))}
       </div>
         </div>
-
-
+        <div className="absolute inset-x-0 bottom-0">
+    <Footer />
+  </div>
     </>
   );
 }

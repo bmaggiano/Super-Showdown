@@ -4,6 +4,7 @@ import { useUser } from "@clerk/clerk-react";
 import Nav from "../navbar/page";
 import LeaderboardHead from "../leaderboardHead/page";
 import LoadingSpinner from "../loadingSpinner/page";
+import Footer from "../footer/page";
 
 // in typescript, this defines the shape/structure and types of data that we expect to recieve
 interface User {
@@ -69,9 +70,10 @@ export default function UsersPage() {
   };
 
   return (
-    <div>
+    <>
       <Nav />
       <LeaderboardHead />
+    <div className="mx-auto max-w-7xl">
       {/* If data is loading, tell user with loading Spinner */}
       {loading ? (
         <div className="flex justify-center mt-20">
@@ -84,7 +86,7 @@ export default function UsersPage() {
             <div
               key={user.id}
               className="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm"
-            >
+              >
               <div className="flex-shrink-0">
                 <img
                   className="h-10 w-10 rounded-full"
@@ -105,7 +107,7 @@ export default function UsersPage() {
                   <button
                     onClick={() => handleDeleteAccount()}
                     className="p-1 rounded-lg border border-black bg-red-600 text-white hover:bg-red-700"
-                  >
+                    >
                     Delete Account
                   </button>
                 </div>
@@ -115,5 +117,10 @@ export default function UsersPage() {
         </div>
       )}
     </div>
+  <div className="absolute inset-x-0 bottom-0">
+    <Footer />
+  </div>
+
+              </>
   );
 }
