@@ -9,7 +9,9 @@ export default function Home() {
   return (
     <>
       <LandingPage/>
+      <section id="howToPlay">
       <LandingPageHero/>
+      </section>
       <Footer/>
     </>
   )
