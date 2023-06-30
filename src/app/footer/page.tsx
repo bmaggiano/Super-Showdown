@@ -2,6 +2,7 @@
 
 import { JSX, SVGProps } from "react"
 
+// Array of objects containing the icon, name and link to twitter and github
 const navigation = [
     {
       name: 'Twitter',
@@ -27,7 +28,7 @@ const navigation = [
     },
   ]
   
-  export default function Example() {
+  export default function Footer() {
     return (
       <footer className="bg-white">
         <div className="mx-auto max-w-7xl px-6 py-8 md:flex md:items-center md:justify-between lg:px-8">
