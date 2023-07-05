@@ -2,7 +2,7 @@
 
 // This was taken from Tailwind UI and modified, I like it's clean professional look as a landing header
 
-import Nav from "../navbar/page";
+import Nav from "../components/navbar";
 import { useUser } from "@clerk/clerk-react";
 
 export default function LandingPage() {
@@ -18,7 +18,7 @@ export default function LandingPage() {
     const image = user?.imageUrl;
 
     try {
-      const response = await fetch("/api/saveName", {
+      const response = await fetch("/api/userRoutes/saveName", {
         method: "POST",
         body: JSON.stringify({ name, email, score, image }),
         headers: {

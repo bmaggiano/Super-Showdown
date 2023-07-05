@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/clerk-react";
-import Nav from "../navbar/page";
-import LeaderboardHead from "../leaderboardHead/page";
-import LoadingSpinner from "../loadingSpinner/page";
-import Footer from "../footer/page";
+import Nav from "../../components/navbar";
+import LeaderboardHead from "../../components/leaderboardHead";
+import LoadingSpinner from "../../components/loadingSpinner";
+import Footer from "../../components/footer";
 
 // in typescript, this defines the shape/structure and types of data that we expect to recieve
 interface User {
@@ -33,8 +33,8 @@ export default function UsersPage() {
   // function to get all prisma users
   const fetchUsers = async () => {
     try {
-      // Will attempt to make fetch call to /api/users
-      const response = await fetch("/api/users");
+      // Will attempt to make fetch call to /api/userRoutes/users
+      const response = await fetch("/api/userRoutes/users");
       const allUsers = await response.json();
       // will set users array to data from api call to prisma
       setUsers(allUsers);
@@ -47,8 +47,8 @@ export default function UsersPage() {
   // function to delete account
   const handleDeleteAccount = async () => {
     try {
-      // Will attempt to make fetch call to /api/deleteAccount
-      const response = await fetch("/api/deleteAccount", {
+      // Will attempt to make fetch call to /api/userRoutes/deleteAccount
+      const response = await fetch("/api/userRoutes/deleteAccount", {
         method: "POST",
         // send the email object to our controller
         body: JSON.stringify({ email }),

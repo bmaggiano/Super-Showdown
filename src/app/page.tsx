@@ -1,9 +1,9 @@
 "use client"
 
 import React from 'react'
-import LandingPage from './landingPage/page'
-import LandingPageHero from './howToPlay/page'
-import Footer from './footer/page'
+import LandingPage from '../components/landingPage'
+import LandingPageHero from '../components/howToPlay'
+import Footer from '../components/footer'
 
 export default function Home() {
   return (

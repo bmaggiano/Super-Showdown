@@ -10,11 +10,11 @@ import {
   Wind,
 } from "phosphor-react";
 import styles from "../page.module.css";
-import PlayHead from "../playHead/page";
+import PlayHead from "../../components/playHead";
 import { useUser } from "@clerk/clerk-react";
-import Nav from "../navbar/page";
-import LoadingSpinner from "../loadingSpinner/page";
-import Footer from "../footer/page";
+import Nav from "../../components/navbar";
+import LoadingSpinner from "../../components/loadingSpinner";
+import Footer from "../../components/footer";
 
 
 export default function PlayGame() {
@@ -53,7 +53,7 @@ export default function PlayGame() {
   const fetchUserScore = async () => {
     try {
       // make api call to currentUser
-      const response = await fetch("/api/currentUser", {
+      const response = await fetch("/api/userRoutes/currentUser", {
         method: "POST",
         // pass email as the argument
         body: JSON.stringify({ email }),
@@ -82,7 +82,7 @@ export default function PlayGame() {
     const email = user?.primaryEmailAddress?.emailAddress;
 
     try {
-      const response = await fetch("/api/saveScore", {
+      const response = await fetch("/api/userRoutes/saveScore", {
         method: "POST",
         // pass the email and score objects to the controller
         body: JSON.stringify({ email, score }),
@@ -107,7 +107,7 @@ export default function PlayGame() {
     const email = user?.primaryEmailAddress?.emailAddress;
 
     try {
-      const response = await fetch("/api/saveScore", {
+      const response = await fetch("/api/userRoutes/saveScore", {
         method: "POST",
         body: JSON.stringify({ email, score }),
         headers: {
@@ -129,7 +129,7 @@ export default function PlayGame() {
   const handleUserOptions = async (e: any) => {
     e.preventDefault();
 
-    const response = await fetch("/api/threeCharacters", {
+    const response = await fetch("/api/superheroRoutes/threeCharacters", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -149,7 +149,7 @@ export default function PlayGame() {
   const handleOpponent = async (e: any) => {
     e.preventDefault();
 
-    const response = await fetch("/api/oponent", {
+    const response = await fetch("/api/superheroRoutes/oponent", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -173,7 +173,7 @@ export default function PlayGame() {
     // This is the data that's getting passed to our controller, think of it as asking ChatGPT a question
     const prompt = `Without any explanation, who would win between ${userChoice} vs. ${opponent?.name}? Then give a one sentence explanation of how this character would win. Please return the data as an object with a format like {"winner": "character", "reason":"reason"}`;
 
-    const response = await fetch("/api/generate", {
+    const response = await fetch("/api/chatGPTRoutes/generate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -461,7 +461,6 @@ export default function PlayGame() {
       </div>
         </div>
         <div className="mt-10 absolute inset-x-0 lg:bottom-0">
-    <Footer />
   </div>
     </>
   );
