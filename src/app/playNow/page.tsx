@@ -14,7 +14,6 @@ import PlayHead from "../../components/playHead";
 import { useUser } from "@clerk/clerk-react";
 import Nav from "../../components/navbar";
 import LoadingSpinner from "../../components/loadingSpinner";
-import Footer from "../../components/footer";
 
 
 export default function PlayGame() {
