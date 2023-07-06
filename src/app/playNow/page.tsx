@@ -235,8 +235,8 @@ export default function PlayGame() {
           {/* if a user options are present, but user hasn't picked, tell user they get one shot */}
           {userOptions.length > 0 && !userChoice && (
             <>
-              <h2 className="text-xl font-sans font-semibold">
-                Choose your character!
+              <h2 className="text-xl font-sans font-semibold text-center">
+                Choose your character to fight <span className="text-red-500">{opponent.name}</span>!
                 <span> You only get one shot at this!</span>
               </h2>
             </>
@@ -248,6 +248,7 @@ export default function PlayGame() {
         <div className="flex flex-row max-[700px]:flex-col">
           {/* If an opponent is present, present their character card with vanilla css based design */}
           {opponent && (
+            <>
             <div className={styles.characterCard}>
               <div className={styles.cardHeader}>
                 <h3 className="text-red-500">{opponent?.name}</h3>
@@ -320,6 +321,7 @@ export default function PlayGame() {
                 </>
               )}
             </div>
+              </>
           )}
 
           {/* if there are choices for the user, present those cards, but with a button for user to choose */}
