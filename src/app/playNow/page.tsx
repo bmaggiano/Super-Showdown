@@ -14,6 +14,7 @@ import PlayHead from "../../components/playHead";
 import { useUser } from "@clerk/clerk-react";
 import Nav from "../../components/navbar";
 import LoadingSpinner from "../../components/loadingSpinner";
+import serviceFunctions from "../../utils/services"
 
 
 export default function PlayGame() {
@@ -25,7 +26,7 @@ export default function PlayGame() {
   const [userChoice, setUserChoice] = useState<any>("");
   const [opponent, setOpponent] = useState<any>(null);
   const { user } = useUser();
-  const email = user?.primaryEmailAddress?.emailAddress;
+  const email = user?.primaryEmailAddress?.emailAddress || "";
 
 
   // define the type of data that gets brought in to prevent future errors
@@ -51,20 +52,11 @@ export default function PlayGame() {
 // This fetches the current users score
   const fetchUserScore = async () => {
     try {
-      // make api call to currentUser
-      const response = await fetch("/api/userRoutes/currentUser", {
-        method: "POST",
-        // pass email as the argument
-        body: JSON.stringify({ email }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const user = await response.json()
-      if(response.ok){
+      // get all user scores from the db
+      const user = await serviceFunctions.getUserScore(email)
+      
         // sets the users score in state with users score in prisma db
         setUserScore(user.score)
-      }
     } catch (error) {
       console.error(error)
     }
@@ -75,34 +67,9 @@ export default function PlayGame() {
     fetchUserScore()
   })
 
-  // function to increase the users score by one
-  const increaseUserScore = async () => {
-    const score = userScore + 1;
-    const email = user?.primaryEmailAddress?.emailAddress;
-
-    try {
-      const response = await fetch("/api/userRoutes/saveScore", {
-        method: "POST",
-        // pass the email and score objects to the controller
-        body: JSON.stringify({ email, score }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (response.ok) {
-        console.log("Increased saved score successfully");
-      } else {
-        console.error("Failed to increase score");
-      }
-    } catch (error) {
-      console.error("Error saving score:", error);
-    }
-  }
-
   // function to reset users score to 0
-  const resetUserScore = async () => {
-    const score = 0;
+  const updateUserScore = async (type: string) => {
+    const score = (type === "reset") ? 0 : userScore + 1;
     const email = user?.primaryEmailAddress?.emailAddress;
 
     try {
@@ -202,10 +169,10 @@ export default function PlayGame() {
 
     // conditional logic to set result to win or lose based off our response object from chat-gpt
     if(parsedRes.winner === userChoice){
-      increaseUserScore()
+      updateUserScore("increment")
       setResult("win")
     } else {
-      resetUserScore()
+      updateUserScore("reset")
       setResult("lose")
     }
     // fetchuser score to reflect an increase or reset based off win/lose value
