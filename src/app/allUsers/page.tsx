@@ -73,54 +73,54 @@ export default function UsersPage() {
     <>
       <Nav />
       <LeaderboardHead />
-    <div className="mx-auto max-w-7xl">
-      {/* If data is loading, tell user with loading Spinner */}
-      {loading ? (
-        <div className="flex justify-center mt-20">
-          <LoadingSpinner />
-        </div>
-      ) : (
-        <div className="m-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {/* Map through users in our prisma db */}
-          {users.map((user) => (
-            <div
-              key={user.id}
-              className="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm"
+      <div className="mx-auto max-w-7xl">
+        {/* If data is loading, tell user with loading Spinner */}
+        {loading ? (
+          <div className="flex justify-center mt-20">
+            <LoadingSpinner />
+          </div>
+        ) : (
+          <div className="m-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {/* Map through users in our prisma db */}
+            {users.map((user) => (
+              <div
+                key={user.id}
+                className="relative md:flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm"
               >
-              <div className="flex-shrink-0">
-                <img
-                  className="h-10 w-10 rounded-full"
-                  src={user.image}
-                  alt={user.name}
-                />
-              </div>
-              <div className="min-w-0 flex-1">
-                <span className="absolute" aria-hidden="true" />
-                <p className="text-sm font-medium text-gray-900">{user.name}</p>
-                <p className="text-sm text-gray-900">{user.email}</p>
-                <p className="truncate text-sm text-gray-500">
-                  Score: {user.score}
-                </p>
-              </div>
-              {isSignedIn && user.email === email && (
-                <div>
-                  <button
-                    onClick={() => handleDeleteAccount()}
-                    className="p-1 rounded-lg border border-black bg-red-600 text-white hover:bg-red-700"
-                    >
-                    Delete Account
-                  </button>
+                <div className="flex-shrink-0">
+                  <img
+                    className="h-10 w-10 rounded-full"
+                    src={user.image}
+                    alt={user.name}
+                  />
                 </div>
-              )}
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-    <div className="absolute inset-x-0 lg:bottom-0">
-    <Footer />
-  </div>
-
-              </>
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-medium text-gray-900">
+                    {user.name}
+                  </p>
+                  <p className="text-sm text-gray-700">{user.email}</p>
+                  <p className="text-sm font-medium text-gray-900">
+                    Score: {user.score}
+                  </p>
+                </div>
+                {isSignedIn && user.email === email && (
+                  <div>
+                    <button
+                      onClick={() => handleDeleteAccount()}
+                      className="p-1 rounded-lg border border-black bg-red-600 text-white hover:bg-red-700"
+                    >
+                      Delete Account
+                    </button>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+      <div className="absolute inset-x-0 lg:bottom-0">
+        <Footer />
+      </div>
+    </>
   );
 }

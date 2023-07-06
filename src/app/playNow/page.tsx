@@ -67,7 +67,6 @@ export default function PlayGame() {
   // updates user score based on the type of score, if reset: score 0, else score + 1
   const updateUserScore = async (type: string) => {
     const score = type === "reset" ? 0 : userScore + 1;
-    const email = user?.primaryEmailAddress?.emailAddress;
 
     try {
       await serviceFunctions.getUpdateUserScore(score, email)
