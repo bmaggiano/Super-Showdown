@@ -37,7 +37,7 @@ export default function LandingPageHero() {
               How it works
             </h2>
             <p className="mt-3 max-w-3xl text-lg text-gray-600">
-              Before you play any game, we think it's important that you
+              Before you play any game, we think it&apos;s important that you
               understand how the game works!
             </p>
           </div>

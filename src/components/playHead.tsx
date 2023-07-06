@@ -17,7 +17,7 @@
   
         <div className="relative mx-auto -mt-12 max-w-7xl px-4 sm:px-6 sm:pb-4 lg:px-8">
           <div className="mx-auto max-w-2xl text-center lg:max-w-4xl">
-            <h1 className="text-4xl font-bold tracking-wide text-gray-900 sm:text-5xl">Let's get ready to rumble!</h1>
+            <h1 className="text-4xl font-bold tracking-wide text-gray-900 sm:text-5xl">Let&apos;s get ready to rumble!</h1>
           </div>
   
         </div>

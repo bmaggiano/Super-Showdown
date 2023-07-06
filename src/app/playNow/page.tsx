@@ -151,7 +151,7 @@ export default function PlayGame() {
         <div className="flex justify-center">
           {/* This will present the users score */}
           <p className="text-xl font-bold font-mono">
-            {user?.firstName}'s score: {userScore}
+            {user?.firstName}&apos;s score: {userScore}
           </p>
         </div>
 

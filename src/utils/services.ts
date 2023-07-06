@@ -1,4 +1,4 @@
-export default {
+const serviceFunctions = {
     getUserScore: async function (email: string) {
         const response = await fetch("/api/userRoutes/currentUser", {
             method: "POST",
@@ -56,3 +56,5 @@ export default {
       return data;
     }
 }
+
+export default serviceFunctions
