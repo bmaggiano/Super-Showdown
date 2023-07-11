@@ -1,6 +1,8 @@
 # Super Showdown
 
-## Link to deployed app (coming soon)
+## Link to deployed app
+
+https://super-showdown.vercel.app/
 
 ![landing page](./public/landingpage.png)
 
