@@ -98,7 +98,6 @@ export default function UsersPage() {
                   <p className="text-sm font-medium text-gray-900">
                     {user.name}
                   </p>
-                  <p className="text-sm text-gray-700">{user.email}</p>
                   <p className="text-sm font-medium text-gray-900">
                     Score: {user.score}
                   </p>
