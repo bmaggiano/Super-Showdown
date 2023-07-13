@@ -17,6 +17,7 @@ export default function Nav() {
 
   return (
     // Using tailwind to style based off the format from Tailwind UI
+    <>
     <header className="bg-black inset-x-0 top-0 z-50">
       <div className="mx-auto max-w-7xl">
         <div className="px-6 pt-2 pb-2 lg:max-w-2xl lg:pl-8 lg:pr-0">
@@ -69,7 +70,7 @@ export default function Nav() {
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
               onClick={() => setMobileMenuOpen(false)}
-            >
+              >
               <span className="sr-only">Close menu</span>
               <XMarkIcon className="h-6 w-6" aria-hidden="true" />
             </button>
@@ -92,5 +93,6 @@ export default function Nav() {
         </Dialog.Panel>
       </Dialog>
     </header>
+  </>
   );
 }
