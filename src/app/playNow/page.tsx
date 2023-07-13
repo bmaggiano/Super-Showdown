@@ -11,7 +11,7 @@ import {
 } from "phosphor-react";
 import styles from "../page.module.css";
 import PlayHead from "../../components/playHead";
-import { useUser } from "@clerk/clerk-react";
+import { useUser, useSession } from "@clerk/clerk-react";
 import Nav from "../../components/navbar";
 import LoadingSpinner from "../../components/loadingSpinner";
 import serviceFunctions from "../../utils/services";
@@ -27,7 +27,12 @@ export default function PlayGame() {
   const [userChoice, setUserChoice] = useState<any>("");
   const [opponent, setOpponent] = useState<any>(null);
   const { user } = useUser();
+  // currently, session is set to expire 24 hours after log in
+  // const { session } = useSession()
   const email = user?.primaryEmailAddress?.emailAddress || "";
+
+  // console.log(user)
+  // console.log(session)
 
   // define the type of data that gets brought in to prevent future errors
   interface Hero {
