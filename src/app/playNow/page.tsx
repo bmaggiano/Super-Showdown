@@ -20,6 +20,7 @@ export default function PlayGame() {
   const [userScore, setUserScore] = useState(0);
   const [loading, setLoading] = useState(false);
   const [oppLoading, setOppLoading] = useState(false);
+  const [heroLoading, setHeroLoading] = useState(false);
   const [result, setResult] = useState("");
   const [responseText, setResponseText] = useState("");
   const [userOptions, setUserOptions] = useState<any>([]);
@@ -79,6 +80,7 @@ export default function PlayGame() {
   // function to present user with 3 character cards to choose from
   const handleUserOptions = async (e: any) => {
     e.preventDefault();
+    setHeroLoading(true)
 
     try {
       const data = await serviceFunctions.getUserOptions();
@@ -87,6 +89,7 @@ export default function PlayGame() {
     } catch (error) {
       console.error(error);
     }
+    setHeroLoading(false)
   };
 
   // function to present the opponent you will be facing
@@ -163,6 +166,9 @@ export default function PlayGame() {
           {oppLoading && (
             <LoadingSpinner/>
           )}
+          {heroLoading && (
+            <LoadingSpinner/>
+          )}
 
          {!opponent && !oppLoading && (
             <button
@@ -236,7 +242,7 @@ export default function PlayGame() {
           )}
 
           {/* if there is an opponent, but no userOption present option to reveal user options */}
-          {opponent && userOptions.length === 0 && (
+          {opponent && userOptions.length === 0 && !heroLoading && (
             <button
               className="font-mono drop-shadow-xl text-lg bg-black rounded-xl text-green-500 font-bold p-4 hover:uppercase hover:text-white"
               onClick={(e) => handleUserOptions(e)}
