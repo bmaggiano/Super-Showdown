@@ -162,6 +162,7 @@ export default function PlayGame() {
               className="font-mono drop-shadow-xl text-lg bg-black rounded-xl text-red-500 font-bold p-4 hover:uppercase hover:text-white"
               onClick={(e) => handleOpponent(e)}
             >
+              <span className="text-white text-sm">click here to</span><br/>
               Reveal your opponent
             </button>
           )}
@@ -174,6 +175,7 @@ export default function PlayGame() {
                   className="bg-black border border-gray-200 rounded-xl p-3 text-white"
                   onClick={(e) => handleOpenAiCall(e)}
                 >
+                  <span className="text-white text-sm">click here to reveal</span><br/>
                   Who would win between{" "}
                   <span className="text-green-500">{userChoice}</span> vs.{" "}
                   <span className="text-red-500">{opponent?.name}</span>?
@@ -202,7 +204,9 @@ export default function PlayGame() {
                       className="font-mono font-bold border border-black rounded-xl cursor-pointer p-2 bg-green-500 text-white"
                       onClick={() => nextButton()}
                     >
-                      You win! Next
+                      You win! 
+                      <br/>
+                      <span className="text-white text-sm">click here to move on</span>
                     </button>
                   </div>
                 ) : (
@@ -211,7 +215,10 @@ export default function PlayGame() {
                       className="font-mono font-bold border border-black rounded-xl cursor-pointer p-2 bg-red-500 text-white"
                       onClick={() => nextButton()}
                     >
-                      You lose! Next
+                      You lose! 
+                      <br/>
+
+                      <span className="text-white text-sm">click here to move on</span>
                     </button>
                   </div>
                 )}
@@ -228,6 +235,7 @@ export default function PlayGame() {
               className="font-mono drop-shadow-xl text-lg bg-black rounded-xl text-green-500 font-bold p-4 hover:uppercase hover:text-white"
               onClick={(e) => handleUserOptions(e)}
             >
+              <span className="text-white text-sm">click here to</span><br/>
               Populate your characters
             </button>
           )}
