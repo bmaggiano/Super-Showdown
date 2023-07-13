@@ -46,23 +46,23 @@ export default function PlayGame() {
       "full-name": string;
     };
   }
-
-  // This fetches the current users score
-  const fetchUserScore = async () => {
-    try {
-      // call function from utils/services.ts to get current user score by email
-      const user = await serviceFunctions.getUserScore(email);
-      // sets the users score in state with users score in prisma db
-      setUserScore(user.score);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
+  
   // fetches user score on component mount
   useEffect(() => {
-    fetchUserScore();
-  });
+    const fetchUserScore = async () => {
+      try {
+        const user = await serviceFunctions.getUserScore(email);
+        setUserScore(user.score);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    if (email) {
+      fetchUserScore();
+    }
+  }, [email]);
+
 
   // updates user score based on the type of score, if reset: score 0, else score + 1
   const updateUserScore = async (type: string) => {
