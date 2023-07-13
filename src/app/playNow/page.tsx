@@ -147,7 +147,7 @@ export default function PlayGame() {
       <Nav />
       <PlayHead />
 
-      <div className="mt-20">
+      <div className="mb-20 mt-20">
         <div className="flex justify-center">
           {/* This will present the users score */}
           <p className="text-xl font-bold font-mono">
@@ -428,7 +428,6 @@ export default function PlayGame() {
             ))}
         </div>
       </div>
-      <div className="mt-10 absolute inset-x-0 lg:bottom-0"></div>
     </>
   );
 }
