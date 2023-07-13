@@ -48,16 +48,16 @@ export default function PlayGame() {
   }
   
   // fetches user score on component mount
+  const fetchUserScore = async () => {
+    try {
+      const user = await serviceFunctions.getUserScore(email);
+      setUserScore(user.score);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
-    const fetchUserScore = async () => {
-      try {
-        const user = await serviceFunctions.getUserScore(email);
-        setUserScore(user.score);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-  
     if (email) {
       fetchUserScore();
     }

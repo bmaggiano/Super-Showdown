@@ -10,8 +10,7 @@ export default async function handler(
   const heroArr: any[] = []
   
   try {
-    
-    for(let i=0; i<3; i++){
+    while (heroArr.length < 3) {
       const randomNumber = Math.floor(Math.random() * 731) + 1;
       const response = await fetch(
         `https://superheroapi.com/api/6332922990107582/${randomNumber}`,
@@ -25,18 +24,25 @@ export default async function handler(
   
       if (response.ok) {
         const data = await response.json();
-
-        // this should make sure that no heroes that have no powerstats, image don't get included
-        // and no characters that have the same id should be included
-        if (data.powerstats.intelligence !== null && data.image.url !== null
-          && !heroArr.some((hero) => hero.id === data.id)) {
+  
+        if (
+          data.powerstats.intelligence !== 'null' &&
+          data.powerstats.strength !== 'null' &&
+          data.powerstats.speed !== 'null' &&
+          data.powerstats.durability !== 'null' &&
+          data.powerstats.power !== 'null' &&
+          data.powerstats.combat !== 'null' &&
+          data.image.url !== null &&
+          !heroArr.some((hero) => hero.id === data.id)
+        ) {
           heroArr.push(data);
         }
-      }
-      else {
+      } else {
         res.status(response.status).json({ error: 'Request failed' });
+        break; // Stop the loop if the request fails
       }
-    } 
+    }
+  
     res.status(200).json(heroArr);
   } catch (error) {
     res.status(500).json({ error: 'An error occurred' });
