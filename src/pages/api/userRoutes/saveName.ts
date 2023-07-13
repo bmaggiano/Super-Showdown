@@ -1,10 +1,9 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Prisma } from '@prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 const prisma = new PrismaClient();
 
-// API call to save a users info into our db
-
+// API call to save a user's info into our db
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
@@ -23,13 +22,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         name,
         email,
         score,
-        image
-      }
+        image,
+      },
     });
 
     return res.status(200).json({ message: 'Name saved successfully' });
   } catch (error) {
-    console.error('Error saving name:', error);
-    return res.status(500).json({ error: 'Internal Server Error' });
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
+      // Name already exists in the database
+      return res.status(200).json({ message: 'Name already exists' });
+    } else {
+      console.error('Error saving name:', error);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
   }
 }

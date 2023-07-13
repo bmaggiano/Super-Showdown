@@ -31,7 +31,7 @@ export default function LandingPage() {
         // after data is stored, send them to playNow
         window.location.href = "/playNow";
       } else {
-        console.error("User already exists");
+        console.log("User already exists");
         // if the name is not saved, it means user is already in db, so they can proceed to playNow
         window.location.href = "/playNow";
       }
