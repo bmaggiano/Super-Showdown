@@ -19,6 +19,7 @@ import serviceFunctions from "../../utils/services";
 export default function PlayGame() {
   const [userScore, setUserScore] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [oppLoading, setOppLoading] = useState(false);
   const [result, setResult] = useState("");
   const [responseText, setResponseText] = useState("");
   const [userOptions, setUserOptions] = useState<any>([]);
@@ -91,7 +92,7 @@ export default function PlayGame() {
   // function to present the opponent you will be facing
   const handleOpponent = async (e: any) => {
     e.preventDefault();
-
+    setOppLoading(true)
     try {
       const data = await serviceFunctions.getOpponent();
       // set opponent state variable with data from api call
@@ -99,6 +100,7 @@ export default function PlayGame() {
     } catch (error) {
       console.error(error);
     }
+    setOppLoading(false)
   };
 
   // function to get AI response from OpenAi using their chat-gpt-3.5 model
@@ -157,7 +159,12 @@ export default function PlayGame() {
 
         <div className={styles.firstAction}>
           {/* if there is no opponent yet, present user button to reveal their opponent */}
-          {!opponent && (
+
+          {oppLoading && (
+            <LoadingSpinner/>
+          )}
+
+         {!opponent && !oppLoading && (
             <button
               className="font-mono drop-shadow-xl text-lg bg-black rounded-xl text-red-500 font-bold p-4 hover:uppercase hover:text-white"
               onClick={(e) => handleOpponent(e)}
