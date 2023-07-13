@@ -61,7 +61,7 @@ export default function PlayGame() {
     if (email) {
       fetchUserScore();
     }
-  }, [email]);
+  });
 
 
   // updates user score based on the type of score, if reset: score 0, else score + 1
@@ -217,7 +217,6 @@ export default function PlayGame() {
                     >
                       You lose! 
                       <br/>
-
                       <span className="text-white text-sm">click here to move on</span>
                     </button>
                   </div>
