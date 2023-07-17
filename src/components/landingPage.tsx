@@ -1,17 +1,21 @@
 "use client";
 
+import { useState } from "react";
 // This was taken from Tailwind UI and modified, I like it's clean professional look as a landing header
 
 import Nav from "../components/navbar";
 import { useUser } from "@clerk/clerk-react";
+import LoadingSpinner from "./loadingSpinner";
 
 export default function LandingPage() {
   // useUser is from Clerk and is how we access user data
   const { user } = useUser();
+  const [loading, setLoading] = useState(false)
 
   // function to save a users data from the Clerk object
   const handleSaveName = async () => {
     // sending this data to our controller
+    setLoading(true)
     const name = user?.fullName;
     const email = user?.primaryEmailAddress?.emailAddress;
     const score = 0;
@@ -79,6 +83,12 @@ export default function LandingPage() {
                   intuition to beat your opponent and claim the number one spot
                   on the leaderboard!
                 </p>
+                {loading ? (
+                  <div className="mt-10 flex items-center gap-x-6">
+                    <LoadingSpinner/>
+                    <p className="text-lg leading-8 text-gray-600">Checking our records...</p>
+                    </div>
+                ) : (
                 <div className="mt-10 flex items-center gap-x-6">
                   <button
                     onClick={() => {
@@ -95,6 +105,7 @@ export default function LandingPage() {
                     Learn more <span aria-hidden="true">→</span>
                   </a>
                 </div>
+                )}
               </div>
             </div>
           </div>
