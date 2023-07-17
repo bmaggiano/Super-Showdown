@@ -15,8 +15,14 @@ import { useUser, useSession } from "@clerk/clerk-react";
 import Nav from "../../components/navbar";
 import LoadingSpinner from "../../components/loadingSpinner";
 import serviceFunctions from "../../utils/services";
+import Head from "next/head";
 
 export default function PlayGame() {
+
+  <Head>
+    <title>Play Now</title>
+  </Head>
+
   const [userScore, setUserScore] = useState(0);
   const [loading, setLoading] = useState(false);
   const [oppLoading, setOppLoading] = useState(false);
